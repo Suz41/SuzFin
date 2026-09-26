@@ -1,0 +1,6 @@
+/**
+ * SuzFin Add-on: Clean Minimalist (Hide Card Play Button)
+ */
+.cardOverlayContainer > .cardOverlayFab-primary {
+    display: none !important;
+}

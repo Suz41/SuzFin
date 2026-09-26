@@ -57,6 +57,20 @@ If you prefer completely clean posters with zero overlay buttons:
 
 ---
 
+## ⏱️ Show Time Remaining on Resume Cards
+
+Jellyfin's card engine by default only displays a progress bar. With **`resume-time.js`**, SuzFin automatically calculates the exact remaining time (e.g. `2011 • 45m left`) and injects it right into the card details:
+
+### How to Enable:
+Use the **Jellyfin JavaScript Injector** plugin (or add to your web client's `index.html`):
+```html
+<script src="https://cdn.jsdelivr.net/gh/Suz41/SuzFin@main/addons/resume-time.js"></script>
+```
+*(The CSS styling for the time badge and glowing progress bar is already bundled inside `theme.css`).*
+
+
+---
+
 ## 🎨 Fine-Tuning & Custom Variables
 
 You can customize variables at any time by placing a `:root` block below your import:

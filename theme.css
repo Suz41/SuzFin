@@ -113,3 +113,56 @@
 .card-hoverable:hover .cardScalable {
     transform: translateY(-2px) scale(1.02) !important;
 }
+
+/* ==========================================================================
+   Resume & Progress Bar Enhancement
+   ========================================================================== */
+
+/* Progress bar container on cards */
+.itemProgressBar,
+.innerCardFooter {
+    height: 4px !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-radius: 4px !important;
+    overflow: hidden !important;
+    backdrop-filter: blur(4px) !important;
+}
+
+/* Filled progress bar with glowing accent gradient */
+.itemProgressBarForeground {
+    background: linear-gradient(90deg, #7c3aed, #a78bfa) !important;
+    border-radius: 4px !important;
+    box-shadow: 0 0 8px rgba(139, 92, 246, 0.6) !important;
+    transition: width 0.3s ease !important;
+}
+
+/* ==========================================================================
+   Time Remaining Badges (for resume-time.js addon)
+   ========================================================================== */
+
+.suzfin-time-badge {
+    color: #c4b5fd !important; /* Soft accent lavender */
+    font-weight: 500 !important;
+    font-size: 0.9em !important;
+}
+
+.suzfin-time-separator {
+    color: var(--dimTextColor) !important;
+    opacity: 0.6 !important;
+}
+
+.suzfin-badge-overlay {
+    position: absolute !important;
+    top: 0.6em !important;
+    right: 0.6em !important;
+    background: rgba(15, 23, 42, 0.75) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    padding: 0.2em 0.6em !important;
+    border-radius: 6px !important;
+    font-size: 0.75em !important;
+    color: #ffffff !important;
+    z-index: 5 !important;
+}
+

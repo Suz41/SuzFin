@@ -1,19 +1,19 @@
-# 💜 SuzFin
+# 🍎 SuzFin — Apple TV (tvOS) Edition
 
-A refined, cross-platform theme for **Jellyfin**, powered by [ElegantFin](https://github.com/lscambo13/ElegantFin) and enhanced with Samsung Tizen TV remote navigation fixes, centered glass play controls, and cohesive purple branding.
+A refined, cross-platform theme for **Jellyfin**, powered by [ElegantFin](https://github.com/lscambo13/ElegantFin) and completely overhauled into a pure **Apple TV monochrome & frosted glass design** (zero purple, zero clashing colors).
 
 Works seamlessly across **Samsung Tizen TV**, **PC Desktop**, and **Mobile**.
 
 ---
 
-## ✨ Enhancements Over Base ElegantFin
+## ✨ Highlights
 
-- 📺 **Samsung Tizen TV (`.layout-tv`):** Fixes TV remote D-Pad navigation with high-visibility glowing focus rings (`outline: 3px solid #ffffff; transform: scale(1.08)`).
-- 🎯 **Centered Glass Play Button:** Replaced the clunky corner green icon with a modern, centered frosted-glass button with smooth hover scaling and purple glow.
-- 🖼️ **Crystal Clear Posters:** Eliminated foggy card footer blur bars over poster artwork.
-- 💜 **Cohesive Palette:** Harmonized with signature `suz` purple accents (`#8b5cf6`).
-- ⏱️ **Slim Glowing Progress Bar:** Minimalist 4px floating progress pill with support for remaining-time display.
-- 📱 **Mobile Touch Friendly:** Clean layout with desktop hover artifacts disabled for touchscreens.
+- 📺 **Samsung Tizen TV Remote Navigation:** High-contrast 3px glowing focus ring (`outline: 3px solid #ffffff; transform: scale(1.08)`) optimized for 10-foot D-Pad remote navigation.
+- 🎬 **Apple TV Cinematic Details Page:** Fullscreen cinematic backdrop, solid white Apple Play/Resume pill, circular frosted-glass buttons, and zero clutter.
+- 🎯 **Centered Frosted Glass Play Button:** Sleek centered play icon on desktop hover with frosted blur and white glow.
+- 🖼️ **Crystal Clear Posters:** No foggy/blurred footer bars covering your artwork.
+- ⏱️ **Minimalist Progress Bar:** Floating 4px glowing silver/white progress pill with time-remaining support.
+- 🖤 **Pure Monochrome Palette:** 100% Apple TV styling with deep dark surfaces, white typography, and subtle neutral grays (no purple or neon tints).
 
 ---
 

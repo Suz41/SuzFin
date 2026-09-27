@@ -26,13 +26,13 @@
    ========================================================================== */
 
 :root {
-    /* Suz signature purple accent */
-    --accentColor: #8b5cf6;
-    --accentHoverColor: #a78bfa;
-    --btnSubmitColor: #7c3aed;
-    --btnSubmitBorderColor: #8b5cf6;
-    --checkboxCheckedBgColor: #8b5cf6;
-    --highlightOutlineColor: #8b5cf6;
+    /* Pure Apple TV white & neutral accents (zero purple) */
+    --accentColor: #ffffff;
+    --accentHoverColor: #e5e5e7;
+    --btnSubmitColor: #ffffff;
+    --btnSubmitBorderColor: #ffffff;
+    --checkboxCheckedBgColor: #ffffff;
+    --highlightOutlineColor: #ffffff;
 
     /* Harmonized button variables (kills default harsh green #299a5d) */
     --btnMiniPlayColor: rgba(255, 255, 255, 0.25);
@@ -88,12 +88,12 @@
     transform: translate(-50%, -50%) scale(1) !important;
 }
 
-/* Hover on play button itself: purple accent glow */
+/* Hover on play button itself: Apple frosted glass glow */
 .cardOverlayContainer > .cardOverlayFab-primary:hover {
-    background: rgba(139, 92, 246, 0.85) !important;
-    border-color: rgba(255, 255, 255, 0.9) !important;
+    background: rgba(255, 255, 255, 0.45) !important;
+    border-color: #ffffff !important;
     transform: translate(-50%, -50%) scale(1.15) !important;
-    box-shadow: 0 10px 35px rgba(139, 92, 246, 0.6) !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 255, 255, 0.4) !important;
 }
 
 /* ==========================================================================
@@ -129,24 +129,33 @@
     z-index: 5 !important;
 }
 
-/* Glowing purple accent progress fill */
+/* Glowing Apple silver/white progress fill */
 .itemProgressBarForeground {
-    background: linear-gradient(90deg, #7c3aed, #a78bfa) !important;
+    background: #ffffff !important;
     border-radius: 9999px !important;
-    box-shadow: 0 0 8px rgba(139, 92, 246, 0.7) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.85) !important;
     height: 100% !important;
     transition: width 0.3s ease !important;
 }
 
 /* Time remaining text badge (from resume-time.js) */
 .suzfin-time-badge {
-    color: #c4b5fd !important;
+    color: #ffffff !important;
     font-weight: 500 !important;
     font-size: 0.88em !important;
+    opacity: 0.95;
 }
 .suzfin-time-separator {
     color: var(--dimTextColor) !important;
     margin: 0 4px;
+}
+
+/* White Apple submit buttons text contrast */
+.button-submit,
+.btnSubmit,
+.emby-button.btnSubmit {
+    color: #000000 !important;
+    font-weight: 600 !important;
 }
 
 /* ==========================================================================

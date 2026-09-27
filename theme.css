@@ -1,42 +1,51 @@
 /**
  * ════════════════════════════════════════════════════════════════════════════
- * 🍎 SuzFin — Apple TV (tvOS) Edition
+ * 🍎 SuzFin — Pure Apple TV (tvOS) Edition
  * ════════════════════════════════════════════════════════════════════════════
  * Base Engine: ElegantFin (by lscambo13)
  * Customizations: Suz41 (https://github.com/Suz41)
  *
- * Designed for:
- *   - 📺 Samsung Tizen TV (.layout-tv) — High contrast remote D-Pad navigation
- *   - 💻 PC Desktop (.layout-desktop) — Floating cards & frosted glass hover
- *   - 📱 Mobile (.layout-mobile) — Touch friendly, zero hover sticking
+ * Hallmarks of the Apple TV Experience:
+ *   - 🖤 OLED Jet Black (#000000) & Ultra-clear Frosted Glass
+ *   - 🎬 Cinematic Left-Aligned Detail Page (Like Apple TV App)
+ *   - 🔘 Solid White Apple Play/Resume Pill + Frosted Secondary Circles
+ *   - 🎛️ Minimal Controls: Strictly Resume, Delete, Favorite, Three Dots
+ *   - 🏷️ Sleek Frosted Metadata Badges (4K, HDR, Rating, Runtime)
+ *   - 🚀 Floating Cards with Specular White Halo on Hover/Focus
+ *   - 📺 10-Foot Samsung Tizen TV Remote D-Pad Navigation (.layout-tv)
+ *   - 📱 Touch-Optimized Mobile View (.layout-mobile)
  * ════════════════════════════════════════════════════════════════════════════
  */
 
-/* 1. Base Engine: Stable ElegantFin */
+/* 1. Base Engine */
 @import url("https://cdn.jsdelivr.net/gh/lscambo13/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 
 /* ==========================================================================
-   2. Apple TV Deep OLED Palette & Geometry
+   2. Apple TV Design System Tokens (OLED Pitch Black & SF Pro Typography)
    ========================================================================== */
 
 :root {
-    /* Pure Apple TV Typography */
+    /* Authentic Apple Typography */
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif !important;
 
-    /* Deep OLED & Charcoal Backgrounds (Replaces navy/slate) */
-    --darkerGradientPoint: #070709;
-    --darkerGradientPointAlpha: rgba(7, 7, 9, 0.85);
-    --lighterGradientPoint: #0e0e13;
-    --lighterGradientPointAlpha: rgba(14, 14, 19, 0.85);
-    --gradientPointAlpha: rgba(14, 14, 19, 0.3);
+    /* Pure OLED Jet Black Backgrounds (Zero Muddy Navy/Slate) */
+    --darkerGradientPoint: #000000;
+    --darkerGradientPointAlpha: rgba(0, 0, 0, 0.88);
+    --lighterGradientPoint: #060608;
+    --lighterGradientPointAlpha: rgba(6, 6, 8, 0.88);
+    --gradientPointAlpha: rgba(6, 6, 8, 0.35);
 
-    /* Frosted Glass Header & Overlays */
-    --headerColor: rgba(12, 12, 16, 0.75);
-    --drawerColor: rgba(12, 12, 16, 0.95);
-    --headerColorGradient: linear-gradient(180deg, rgba(7, 7, 9, 0.92) 0%, rgba(7, 7, 9, 0.6) 65%, transparent 100%);
-    --headerColorGradientAlt: linear-gradient(180deg, #0e0e13 70%, transparent);
+    /* Background Gradients */
+    --backgroundGradient: #000000;
+    --cardBackgroundGradient: #0a0a0c;
 
-    /* Apple Monochrome Accents (Zero Purple, Zero Green) */
+    /* Frosted Glass Header & Drawers */
+    --headerColor: rgba(0, 0, 0, 0.65);
+    --drawerColor: rgba(10, 10, 12, 0.96);
+    --headerColorGradient: linear-gradient(180deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.5) 60%, transparent 100%);
+    --headerColorGradientAlt: linear-gradient(180deg, #000000 75%, transparent);
+
+    /* Apple Monochrome Accents (Zero Purple, Zero Clashing Colors) */
     --accentColor: #ffffff;
     --accentHoverColor: #e5e5e7;
     --btnSubmitColor: #ffffff;
@@ -46,36 +55,40 @@
     --btnMiniPlayColor: rgba(255, 255, 255, 0.25);
     --btnMiniPlayBorderColor: rgba(255, 255, 255, 0.4);
 
-    /* Text & Subtle Borders */
+    /* Clean Apple High-Contrast Text */
     --textColor: #f5f5f7;
-    --dimTextColor: #a1a1a6;
+    --dimTextColor: #86868b;
     --borderColor: rgba(255, 255, 255, 0.12);
     --darkerBorderColor: rgba(255, 255, 255, 0.08);
-    --lighterBorderColor: rgba(255, 255, 255, 0.18);
+    --lighterBorderColor: rgba(255, 255, 255, 0.2);
     --selectorBackgroundColor: rgba(255, 255, 255, 0.08);
-    --selectorBackgroundColorAlpha: rgba(255, 255, 255, 0.06);
+    --selectorBackgroundColorAlpha: rgba(255, 255, 255, 0.05);
 
-    /* Apple TV Corner Radii (Smooth Squircles) */
+    /* Apple Squircles (Smooth Rounded Geometry) */
     --largeRadius: 14px;
     --largerRadius: 18px;
     --smallRadius: 8px;
     --smallerRadius: 6px;
 
-    /* Ambient Shadows */
-    --cardShadow: 0 10px 28px rgba(0, 0, 0, 0.65);
-    --cardHoverBorderColor: rgba(255, 255, 255, 0.85);
+    /* Ambient Deep Shadows */
+    --cardShadow: 0 12px 32px rgba(0, 0, 0, 0.7);
+    --cardHoverBorderColor: rgba(255, 255, 255, 0.95);
     --cardResumeProgressColor: #ffffff;
 }
 
+body, html {
+    background-color: #000000 !important;
+}
+
 /* ==========================================================================
-   3. Frosted Glass Header & Apple Capsule Navigation Tabs
+   3. Apple TV Frosted Glass Header & Capsule Navigation Tabs
    ========================================================================== */
 
 /* Ultra-clear frosted glass header */
 .skinHeader {
-    background: rgba(10, 10, 14, 0.72) !important;
-    backdrop-filter: blur(28px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: blur(30px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(190%) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
@@ -87,7 +100,7 @@
     border-radius: 9999px !important;
     padding: 0.45em 1.25em !important;
     margin: 0 0.25em !important;
-    transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    transition: all 0.22s cubic-bezier(0.25, 1, 0.5, 1) !important;
     color: rgba(255, 255, 255, 0.65) !important;
     background: transparent !important;
     border: 1px solid transparent !important;
@@ -99,15 +112,16 @@
     background: rgba(255, 255, 255, 0.1) !important;
 }
 
+/* Active tab: authentic Apple frosted capsule with sharp white text */
 .emby-tab-button-active,
 .sectionTabs .emby-tab-button-active {
     color: #ffffff !important;
     background: rgba(255, 255, 255, 0.18) !important;
     backdrop-filter: blur(16px) !important;
     -webkit-backdrop-filter: blur(16px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.32) !important;
     font-weight: 600 !important;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45) !important;
 }
 
 .emby-tab-button .emby-button-foreground,
@@ -118,26 +132,37 @@
     color: inherit !important;
 }
 
+/* Header buttons (Search, Cast, User Avatar) */
+.headerButton {
+    color: rgba(255, 255, 255, 0.8) !important;
+    transition: color 0.2s ease, transform 0.2s ease !important;
+}
+
+.headerButton:hover {
+    color: #ffffff !important;
+    transform: scale(1.08) !important;
+}
+
 /* ==========================================================================
-   4. Floating Apple TV Cards & Smooth Hover
+   4. Apple TV Floating Poster Cards & Ambient 3D Hover
    ========================================================================== */
 
-/* Smooth squircle corners and subtle borders */
+/* Smooth squircle corners and subtle dark borders */
 .cardScalable {
     border-radius: 14px !important;
     overflow: hidden !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
-    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.2s ease !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6) !important;
+    transition: transform 0.28s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.28s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.2s ease !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     position: relative !important;
 }
 
-/* Apple TV Floating Hover: gentle lift and ambient white glow */
+/* Apple TV Floating Hover: Physical lift + specular white outline */
 .card-hoverable:hover .cardScalable,
 .card:focus .cardScalable {
-    transform: translateY(-5px) scale(1.035) !important;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.75), 0 0 0 2px rgba(255, 255, 255, 0.9) !important;
-    border-color: rgba(255, 255, 255, 0.9) !important;
+    transform: translateY(-7px) scale(1.04) !important;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.85), 0 0 0 2px rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(255, 255, 255, 0.95) !important;
 }
 
 /* Apple TV Section Titles */
@@ -150,7 +175,7 @@
     margin-bottom: 0.75em !important;
 }
 
-/* Card typography */
+/* Card titles underneath */
 .cardText-first {
     font-weight: 600 !important;
     font-size: 0.95em !important;
@@ -182,7 +207,7 @@
 /* Apple-style floating slim progress pill */
 .itemProgressBar {
     position: absolute !important;
-    bottom: 8px !important;
+    bottom: 9px !important;
     left: 10px !important;
     right: 10px !important;
     width: auto !important;
@@ -199,7 +224,7 @@
 .itemProgressBarForeground {
     background: #ffffff !important;
     border-radius: 9999px !important;
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.85) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.9) !important;
     height: 100% !important;
     transition: width 0.3s ease !important;
 }
@@ -214,8 +239,8 @@
     bottom: auto !important;
     right: auto !important;
     transform: translate(-50%, -50%) scale(0.9) !important;
-    width: 3.4em !important;
-    height: 3.4em !important;
+    width: 3.5em !important;
+    height: 3.5em !important;
     background: rgba(255, 255, 255, 0.22) !important;
     backdrop-filter: blur(14px) !important;
     -webkit-backdrop-filter: blur(14px) !important;
@@ -231,7 +256,7 @@
 
 .cardOverlayContainer > .cardOverlayFab-primary .material-icons,
 .cardOverlayContainer > .cardOverlayFab-primary .material-symbols-rounded {
-    font-size: 2em !important;
+    font-size: 2.1em !important;
     color: #ffffff !important;
 }
 
@@ -245,12 +270,74 @@
     background: rgba(255, 255, 255, 0.42) !important;
     border-color: #ffffff !important;
     transform: translate(-50%, -50%) scale(1.12) !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 18px rgba(255, 255, 255, 0.45) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 18px rgba(255, 255, 255, 0.5) !important;
 }
 
 /* ==========================================================================
-   7. 🎬 Minimal Apple TV Detail Page (Only Resume, Delete, Fav, More)
+   7. 🎬 Cinematic Apple TV Detail Page (Left-Aligned, Minimal, Elegant)
    ========================================================================== */
+
+/* Fullscreen cinematic backdrop blending into OLED black */
+#itemDetailPage .itemBackdrop {
+    top: 0 !important;
+    margin-top: 0 !important;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0.6) 80%, transparent 100%) !important;
+    -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0.6) 80%, transparent 100%) !important;
+}
+
+/* Left-aligned hero content (Authentic Apple TV layout) */
+#itemDetailPage .detailPagePrimaryContent {
+    text-align: left !important;
+    align-items: flex-start !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: transparent !important;
+}
+
+#itemDetailPage .mainDetailButtons {
+    justify-content: flex-start !important;
+    margin: 1.25rem 0 !important;
+}
+
+#itemDetailPage .itemMiscInfo {
+    justify-content: flex-start !important;
+    color: #a1a1a6 !important;
+    font-size: 0.95em !important;
+    font-weight: 500 !important;
+    gap: 0.5rem !important;
+}
+
+/* Apple TV Translucent Frosted Metadata Badges (4K, HDR, Rating) */
+.mediaInfoItem.mediaInfoItem-badge,
+.starRatingContainer {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    border-radius: 5px !important;
+    padding: 0.15em 0.55em !important;
+    color: #ffffff !important;
+    font-size: 0.78em !important;
+    font-weight: 600 !important;
+}
+
+/* Remove serif fonts: Pure SF Pro modern typography */
+.tagline {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif !important;
+    font-style: normal !important;
+    font-size: 1.18em !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    margin: 0.75rem 0 0.4rem 0 !important;
+    text-align: left !important;
+}
+
+.itemOverview {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif !important;
+    font-size: 1.02em !important;
+    line-height: 1.65 !important;
+    color: rgba(255, 255, 255, 0.82) !important;
+    max-width: 58em !important;
+    text-align: left !important;
+}
 
 /* 1. Solid White Apple Play / Resume Pill */
 .mainDetailButtons .btnPlay,
@@ -261,12 +348,12 @@
     color: #000000 !important;
     font-weight: 600 !important;
     font-size: 1.05em !important;
-    padding: 0.65rem 2rem !important;
+    padding: 0.7rem 2.2rem !important;
     border-radius: 9999px !important;
     border: none !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+    box-shadow: 0 4px 22px rgba(255, 255, 255, 0.3) !important;
     transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.2s ease !important;
-    margin-right: 0.5em !important;
+    margin-right: 0.6em !important;
 }
 
 .mainDetailButtons .btnPlay:hover,
@@ -278,7 +365,7 @@
     background: #f5f5f7 !important;
     color: #000000 !important;
     transform: scale(1.06) !important;
-    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.6) !important;
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.65) !important;
 }
 
 /* 2. Secondary Circular Buttons: Delete, Favorite, Three Dots */
@@ -298,13 +385,13 @@
     align-items: center !important;
     justify-content: center !important;
     background: rgba(255, 255, 255, 0.12) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
     border: 1px solid rgba(255, 255, 255, 0.22) !important;
     border-radius: 50% !important;
     color: #ffffff !important;
-    width: 2.8em !important;
-    height: 2.8em !important;
+    width: 2.85em !important;
+    height: 2.85em !important;
     padding: 0 !important;
     margin: 0 0.35em !important;
     transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1) !important;
@@ -318,7 +405,7 @@
 .mainDetailButtons .btnFavorite:focus,
 .mainDetailButtons .btnMoreCommands:focus,
 .mainDetailButtons .btnMore:focus {
-    background: rgba(255, 255, 255, 0.3) !important;
+    background: rgba(255, 255, 255, 0.28) !important;
     transform: scale(1.12) !important;
     border-color: #ffffff !important;
     box-shadow: 0 0 16px rgba(255, 255, 255, 0.5) !important;
@@ -338,7 +425,7 @@
     box-shadow: 0 0 16px rgba(239, 68, 68, 0.5) !important;
 }
 
-/* 3. HIDE ALL OTHER BUTTONS (Trailer, Replay, Download, SyncPlay, Played, Split, etc.) */
+/* 3. STRICTLY HIDE ALL OTHER BUTTONS (Trailer, Replay, Download, SyncPlay, Played, Split, etc.) */
 .mainDetailButtons > .emby-button:not(.btnPlay):not(.btnResume):not([data-action="play"]):not([data-action="resume"]):not(.btnDelete):not(.btnDeleteItem):not([data-action="delete"]):not([data-action="deleteitem"]):not(.btnUserRating):not(.btnFavorite):not([data-action="favorite"]):not(.btnMoreCommands):not(.btnMore):not([data-action="more"]):not([data-action="menu"]):not([data-action="commands"]),
 .mainDetailButtons .btnPlayTrailer,
 .mainDetailButtons .btnTrailer,
@@ -372,7 +459,19 @@
     display: none !important;
 }
 
-/* White contrast on dialog submit buttons */
+/* Remove boxy gray containers */
+#itemDetailPage .detailPagePrimaryContainer,
+#itemDetailPage .detailSection,
+#itemDetailPage .itemDetailsGroup,
+#itemDetailPage .paperList,
+#itemDetailPage .visualCardBox {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Dialog submit button */
 .button-submit,
 .btnSubmit,
 .emby-button.btnSubmit {
@@ -392,8 +491,8 @@
 
 .layout-tv .card:focus .cardScalable,
 .layout-tv .card.show-focus:focus .cardScalable {
-    transform: scale(1.08) translateY(-4px) !important;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9), 0 0 0 3.5px #ffffff !important;
+    transform: scale(1.08) translateY(-5px) !important;
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.95), 0 0 0 3.5px #ffffff !important;
     border-color: #ffffff !important;
     z-index: 20 !important;
 }
@@ -405,7 +504,7 @@
     transform: scale(1.05) !important;
 }
 
-/* On TV, clicking remote Enter plays directly (suppress hover overlay) */
+/* On TV, clicking remote Enter plays directly */
 .layout-tv .cardOverlayContainer > .cardOverlayFab-primary {
     display: none !important;
 }

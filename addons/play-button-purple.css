@@ -1,0 +1,32 @@
+/**
+ * SuzFin Add-on: Centered Purple Glow Play Button
+ */
+.cardOverlayContainer > .cardOverlayFab-primary {
+    top: 50% !important;
+    left: 50% !important;
+    bottom: auto !important;
+    right: auto !important;
+    transform: translate(-50%, -50%) !important;
+    width: 3.4em !important;
+    height: 3.4em !important;
+    background: rgba(139, 92, 246, 0.75) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1.5px solid rgba(196, 181, 253, 0.6) !important;
+    border-radius: 50% !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.45) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    margin: 0 !important;
+}
+
+.cardOverlayContainer > .cardOverlayFab-primary:hover {
+    background: rgba(139, 92, 246, 0.95) !important;
+    transform: translate(-50%, -50%) scale(1.12) !important;
+    box-shadow: 0 6px 25px rgba(139, 92, 246, 0.7) !important;
+}
+
+.cardOverlayContainer > .cardOverlayFab-primary .material-icons {
+    font-size: 1.9em !important;
+    color: #ffffff !important;
+}

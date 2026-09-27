@@ -1,32 +1,29 @@
 /**
  * ════════════════════════════════════════════════════════════════════════════
- * 💜 SuzFin — Powered by ElegantFin (Cross-Platform Edition)
+ * 🍎 SuzFin — Apple TV Minimal Edition
  * ════════════════════════════════════════════════════════════════════════════
  * Author: Suz41 (https://github.com/Suz41)
- * Upstream: ElegantFin (by lscambo13) + JF12 Patch (by mihaif7)
  *
- * Enhancements:
- *   - Fixes Samsung Tizen TV (.layout-tv) remote D-Pad navigation & focus rings
- *   - Centered frosted-glass play button (replaces harsh corner green icon)
- *   - Crystal clear card posters (removes foggy card footer blur)
- *   - Slim glowing progress bar with support for time-remaining script
+ * Core Features:
+ *   - Powered by base ElegantFin (clean, polished typography & cards)
+ *   - No broken JF12 patch (fixes backdrop displacement & black void)
+ *   - Minimal Apple TV detail page: hides clutter buttons (download, delete, etc.)
+ *   - Solid white Apple Play/Resume pill button
+ *   - Centered frosted-glass card play button on desktop hover
+ *   - Samsung Tizen TV remote D-Pad navigation (.layout-tv) with 3px glowing ring
  *   - Pure Apple TV monochrome & frosted glass palette (zero purple)
  *   - Mobile touch optimizations (.layout-mobile)
  * ════════════════════════════════════════════════════════════════════════════
  */
 
-/* 1. Upstream Base: ElegantFin Core Engine */
+/* 1. Base Engine: ElegantFin */
 @import url("https://cdn.jsdelivr.net/gh/lscambo13/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
 
-/* 2. Upstream Base: Jellyfin 12 Modern Layout Compatibility Patch */
-@import url("https://cdn.jsdelivr.net/gh/mihaif7/elegantfin-jf12@main/Theme/ElegantFin-jf12-modern-latest.css");
-
 /* ==========================================================================
-   3. Theme Variables & Color Palette
+   2. Pure Apple TV Monochrome Palette (Zero Purple)
    ========================================================================== */
 
 :root {
-    /* Pure Apple TV white & neutral accents (zero purple) */
     --accentColor: #ffffff;
     --accentHoverColor: #e5e5e7;
     --btnSubmitColor: #ffffff;
@@ -34,17 +31,17 @@
     --checkboxCheckedBgColor: #ffffff;
     --highlightOutlineColor: #ffffff;
 
-    /* Harmonized button variables (kills default harsh green #299a5d) */
+    /* Clean neutral buttons */
     --btnMiniPlayColor: rgba(255, 255, 255, 0.25);
     --btnMiniPlayBorderColor: rgba(255, 255, 255, 0.4);
 
-    /* Clean dark canvas & elevation */
-    --darkerGradientPoint: #090c12;
-    --lighterGradientPoint: #121722;
-    --headerColor: rgba(14, 18, 27, 0.85);
-    --drawerColor: rgba(14, 18, 27, 0.95);
+    /* Deep dark OLED surfaces */
+    --darkerGradientPoint: #08080a;
+    --lighterGradientPoint: #101014;
+    --headerColor: rgba(12, 12, 16, 0.85);
+    --drawerColor: rgba(12, 12, 16, 0.95);
 
-    /* Card geometry */
+    /* Smooth corner radii */
     --largeRadius: 1em;
     --largerRadius: 1.25em;
     --smallRadius: 0.5em;
@@ -52,7 +49,7 @@
 }
 
 /* ==========================================================================
-   4. Centered Frosted-Glass Play Button (Replaces Corner Green Icon)
+   3. Centered Frosted-Glass Play Button (Cards)
    ========================================================================== */
 
 .cardOverlayContainer > .cardOverlayFab-primary {
@@ -81,14 +78,13 @@
     color: #ffffff !important;
 }
 
-/* Smooth reveal on desktop card hover */
+/* Reveal play button smoothly on desktop hover */
 .card-hoverable:hover .cardOverlayContainer > .cardOverlayFab-primary,
 .card:focus .cardOverlayContainer > .cardOverlayFab-primary {
     opacity: 1 !important;
     transform: translate(-50%, -50%) scale(1) !important;
 }
 
-/* Hover on play button itself: Apple frosted glass glow */
 .cardOverlayContainer > .cardOverlayFab-primary:hover {
     background: rgba(255, 255, 255, 0.45) !important;
     border-color: #ffffff !important;
@@ -97,7 +93,7 @@
 }
 
 /* ==========================================================================
-   5. Crystal Clear Posters & Minimalist Progress Bar
+   4. Crystal Clear Posters & Floating Slim Progress Pill
    ========================================================================== */
 
 /* Remove foggy/blurred card footer overlays */
@@ -112,7 +108,11 @@
     margin: 0 !important;
 }
 
-/* Slim floating progress bar pill */
+.cardScalable {
+    position: relative !important;
+}
+
+/* Apple-style floating slim progress pill */
 .itemProgressBar {
     position: absolute !important;
     bottom: 8px !important;
@@ -129,7 +129,6 @@
     z-index: 5 !important;
 }
 
-/* Glowing Apple silver/white progress fill */
 .itemProgressBarForeground {
     background: #ffffff !important;
     border-radius: 9999px !important;
@@ -150,82 +149,30 @@
     margin: 0 4px;
 }
 
-/* White Apple submit buttons text contrast */
-.button-submit,
-.btnSubmit,
-.emby-button.btnSubmit {
-    color: #000000 !important;
-    font-weight: 600 !important;
-}
-
 /* ==========================================================================
-   6. 📺 Samsung Tizen TV & Remote D-Pad Navigation (.layout-tv)
+   5. 🎬 Apple TV Minimal Details Page (No Clutter, Full Backdrop)
    ========================================================================== */
 
-/* Fix D-Pad focus on TV so remote selection is clearly visible */
-.layout-tv button:focus,
-.layout-tv .card:focus,
-.layout-tv .emby-button:focus {
-    outline: none !important;
+/* Reset backdrop position (undo any negative margins) */
+#itemDetailPage .itemBackdrop {
+    top: 0 !important;
+    margin-top: 0 !important;
 }
 
-.layout-tv .card:focus .cardScalable,
-.layout-tv .card.show-focus:focus .cardScalable {
-    transform: scale(1.08) translateY(-4px) !important;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9), 0 0 0 3px #ffffff !important;
-    border-color: #ffffff !important;
-    z-index: 20 !important;
+/* Remove giant gray card containers around details */
+#itemDetailPage .detailPagePrimaryContainer,
+#itemDetailPage .detailSection,
+#itemDetailPage .itemDetailsGroup,
+#itemDetailPage .detailPagePrimaryContent,
+#itemDetailPage .paperList,
+#itemDetailPage .visualCardBox {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
-.layout-tv .emby-tab-button:focus {
-    background: rgba(255, 255, 255, 0.25) !important;
-    color: #ffffff !important;
-    box-shadow: 0 0 0 2px #ffffff !important;
-    transform: scale(1.05) !important;
-}
-
-/* Disable hover-only overlay play icons on TV (remote Enter plays directly) */
-.layout-tv .cardOverlayContainer > .cardOverlayFab-primary {
-    display: none !important;
-}
-
-/* Prevent TV horizontal/vertical row cutting */
-.layout-tv .itemsContainer {
-    overflow-y: visible !important;
-}
-
-/* ==========================================================================
-   7. 📱 Mobile Optimizations (.layout-mobile)
-   ========================================================================== */
-
-/* Disable desktop hover transforms on touch screens */
-.layout-mobile .card-hoverable:hover .cardScalable {
-    transform: none !important;
-}
-
-/* Disable overlay play button on mobile (touch taps open media directly) */
-.layout-mobile .cardOverlayContainer > .cardOverlayFab-primary {
-    display: none !important;
-}
-
-/* Clean header blur on mobile */
-.layout-mobile .skinHeader {
-    backdrop-filter: blur(16px) !important;
-}
-
-/* ==========================================================================
-   8. Page Padding
-   ========================================================================== */
-
-.page, .mainAnimatedPages {
-    padding-bottom: 5rem !important;
-}
-
-/* ==========================================================================
-   9. 🍎 Apple TV (tvOS) Details Page Buttons & Typography
-   ========================================================================== */
-
-/* Apple TV Buttons: Solid White Play/Resume Pill */
+/* Clean Apple TV Play/Resume Button: Solid White Pill */
 .mainDetailButtons .btnPlay,
 .mainDetailButtons .btnResume,
 .mainDetailButtons .emby-button[data-action="resume"],
@@ -253,7 +200,7 @@
     box-shadow: 0 8px 30px rgba(255, 255, 255, 0.6) !important;
 }
 
-/* Secondary Action Buttons (Trailer, Favorite, Watched) */
+/* Secondary Circle Buttons: Sleek Frosted Glass */
 .mainDetailButtons .emby-button:not(.btnPlay):not(.btnResume):not([data-action="resume"]):not([data-action="play"]) {
     background: rgba(255, 255, 255, 0.12) !important;
     backdrop-filter: blur(12px) !important;
@@ -278,6 +225,23 @@
     box-shadow: 0 0 16px rgba(255, 255, 255, 0.5) !important;
 }
 
+/* ── HIDE EXCESSIVE CLUTTER BUTTONS (Minimalist Apple Style) ── */
+.mainDetailButtons .btnDownload,
+.mainDetailButtons .btnDelete,
+.mainDetailButtons .btnDeleteItem,
+.mainDetailButtons .btnSplitVersions,
+.mainDetailButtons .btnShuffle,
+.mainDetailButtons .btnSyncPlay,
+.mainDetailButtons .btnPlayExternal,
+.mainDetailButtons [data-action="download"],
+.mainDetailButtons [data-action="delete"],
+.mainDetailButtons [data-action="syncplay"],
+.mainDetailButtons [data-action="shuffle"],
+.mainDetailButtons [data-action="splitversions"],
+.mainDetailButtons [data-action="externalplayer"] {
+    display: none !important;
+}
+
 /* Clean Tagline and Overview text */
 .tagline {
     font-size: 1.15em !important;
@@ -291,4 +255,68 @@
     color: rgba(255, 255, 255, 0.85) !important;
 }
 
+/* White Apple submit buttons text contrast */
+.button-submit,
+.btnSubmit,
+.emby-button.btnSubmit {
+    color: #000000 !important;
+    font-weight: 600 !important;
+}
 
+/* ==========================================================================
+   6. 📺 Samsung Tizen TV & Remote D-Pad Navigation (.layout-tv)
+   ========================================================================== */
+
+.layout-tv button:focus,
+.layout-tv .card:focus,
+.layout-tv .emby-button:focus {
+    outline: none !important;
+}
+
+.layout-tv .card:focus .cardScalable,
+.layout-tv .card.show-focus:focus .cardScalable {
+    transform: scale(1.08) translateY(-4px) !important;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9), 0 0 0 3px #ffffff !important;
+    border-color: #ffffff !important;
+    z-index: 20 !important;
+}
+
+.layout-tv .emby-tab-button:focus {
+    background: rgba(255, 255, 255, 0.25) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 0 2px #ffffff !important;
+    transform: scale(1.05) !important;
+}
+
+/* On TV, clicking remote Enter plays directly (no hover overlay needed) */
+.layout-tv .cardOverlayContainer > .cardOverlayFab-primary {
+    display: none !important;
+}
+
+.layout-tv .itemsContainer {
+    overflow-y: visible !important;
+}
+
+/* ==========================================================================
+   7. 📱 Mobile Optimizations (.layout-mobile)
+   ========================================================================== */
+
+.layout-mobile .card-hoverable:hover .cardScalable {
+    transform: none !important;
+}
+
+.layout-mobile .cardOverlayContainer > .cardOverlayFab-primary {
+    display: none !important;
+}
+
+.layout-mobile .skinHeader {
+    backdrop-filter: blur(16px) !important;
+}
+
+/* ==========================================================================
+   8. Page Padding
+   ========================================================================== */
+
+.page, .mainAnimatedPages {
+    padding-bottom: 5rem !important;
+}

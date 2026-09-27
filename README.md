@@ -44,7 +44,7 @@ To show the exact remaining time (e.g. `2011 • 45m left`) on Continue Watching
 
 ## 📜 Credits & Base Work
 - Base theme: [ElegantFin](https://github.com/lscambo13/ElegantFin) by lscambo13.
-- JF12 layout patch: [elegantfin-jf12](https://github.com/mihaif7/elegantfin-jf12) by mihaif7.
+- Customizations & Apple TV styling: [SuzFin](https://github.com/Suz41/SuzFin) by Suz41.
 
 ---
 

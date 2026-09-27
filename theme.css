@@ -151,6 +151,7 @@ html, body, .backgroundContainer {
 }
 
 .cardScalable {
+    position: relative !important;
     border-radius: var(--suz-radius-card) !important;
     overflow: hidden !important;
     border: 1px solid var(--suz-border-subtle) !important;
@@ -250,22 +251,41 @@ html, body, .backgroundContainer {
    6. Minimalist Apple Progress Bars & Time Remaining
    ========================================================================== */
 
-/* Progress bar pill track */
-.itemProgressBar,
-.innerCardFooter {
-    height: 4px !important;
-    background: rgba(255, 255, 255, 0.18) !important;
-    border-radius: var(--suz-radius-pill) !important;
-    overflow: hidden !important;
-    margin: 4px 6px !important;
-    backdrop-filter: blur(4px) !important;
+/* Completely remove foggy default card footer containers */
+.innerCardFooter,
+.cardFooter {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
-/* Glowing white/silver progress fill */
+/* Apple-style floating slim progress pill bar */
+.itemProgressBar {
+    position: absolute !important;
+    bottom: 8px !important;
+    left: 8px !important;
+    right: 8px !important;
+    width: auto !important;
+    height: 4px !important;
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-radius: var(--suz-radius-pill) !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    backdrop-filter: blur(6px) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+    z-index: 5 !important;
+}
+
+/* Glowing silver/white progress fill */
 .itemProgressBarForeground {
     background: #ffffff !important;
     border-radius: var(--suz-radius-pill) !important;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important;
+    height: 100% !important;
     transition: width 0.3s ease !important;
 }
 
@@ -280,6 +300,7 @@ html, body, .backgroundContainer {
     color: var(--suz-text-tertiary) !important;
     margin: 0 4px;
 }
+
 
 /* ==========================================================================
    7. Item Details Page & Cinematic Backdrop
@@ -403,3 +424,24 @@ html, body, .backgroundContainer {
 .layout-mobile .cardOverlayContainer > .cardOverlayFab-primary {
     display: none !important; /* Touch taps poster directly to open/play */
 }
+
+/* ==========================================================================
+   11. Section Titles & Spacing
+   ========================================================================== */
+
+.sectionTitle {
+    font-size: 1.3em !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.015em !important;
+    color: var(--suz-text-primary) !important;
+    margin-bottom: 0.5em !important;
+}
+
+.verticalSection {
+    margin-bottom: 2.2em !important;
+}
+
+.page, .mainAnimatedPages {
+    padding-bottom: 5rem !important;
+}
+

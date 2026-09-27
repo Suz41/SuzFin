@@ -1,47 +1,210 @@
 /**
- * SuzFin - A polished, modern Jellyfin theme
+ * ════════════════════════════════════════════════════════════════════════════
+ * 🍎 SuzFin — Apple TV (tvOS) Edition for Jellyfin
+ * ════════════════════════════════════════════════════════════════════════════
  * Author: Suz41 (https://github.com/Suz41)
- * Inspired by & building upon ElegantFin (by lscambo13)
+ * License: MIT
+ *
+ * Ground-up modern Jellyfin theme inspired by Apple TV+ / tvOS.
+ * Designed for 100% cross-platform parity:
+ *   - Samsung Tizen TV (.layout-tv & D-pad remote navigation)
+ *   - PC & Mac Desktop (.layout-desktop)
+ *   - Mobile & Tablet (.layout-mobile)
+ * ════════════════════════════════════════════════════════════════════════════
  */
 
-/* 1. Base ElegantFin Engine */
-@import url("https://cdn.jsdelivr.net/gh/lscambo13/ElegantFin@main/Theme/ElegantFin-jellyfin-theme-build-latest-minified.css");
-
-/* 2. Jellyfin 12 Modern UI Compatibility Patch */
-@import url("https://cdn.jsdelivr.net/gh/mihaif7/elegantfin-jf12@main/Theme/ElegantFin-jf12-modern-latest.css");
-
 /* ==========================================================================
-   SuzFin Theme Overrides & Styling
+   1. Apple Design Tokens & Root Variables
    ========================================================================== */
 
 :root {
-    /* --- Suz Signature Accent Colors --- */
-    --accentColor: #8b5cf6;
-    --accentHoverColor: #a78bfa;
-    --btnSubmitColor: #7c3aed;
-    --btnSubmitBorderColor: #8b5cf6;
-    --checkboxCheckedBgColor: #8b5cf6;
-    --highlightOutlineColor: #8b5cf6;
+    /* --- Canvas & Surface Colors --- */
+    --suz-bg-canvas: #08080a;
+    --suz-bg-elevated: rgba(22, 22, 28, 0.7);
+    --suz-bg-glass: rgba(18, 18, 24, 0.72);
+    --suz-bg-glass-heavy: rgba(14, 14, 18, 0.88);
+    --suz-bg-card: rgba(255, 255, 255, 0.04);
+    
+    /* --- Apple Accents & Tones --- */
+    --suz-accent: #ffffff;
+    --suz-accent-subtle: rgba(255, 255, 255, 0.75);
+    --suz-accent-purple: #8b5cf6;
+    --suz-accent-purple-glow: rgba(139, 92, 246, 0.45);
+    
+    /* --- Text Hierarchy --- */
+    --suz-text-primary: #f5f5f7;
+    --suz-text-secondary: #86868b;
+    --suz-text-tertiary: #6e6e73;
 
-    /* --- Harmonized Button Palette (replaces harsh green) --- */
-    --btnMiniPlayColor: rgba(255, 255, 255, 0.25);
-    --btnMiniPlayBorderColor: rgba(255, 255, 255, 0.4);
+    /* --- Borders & Outlines --- */
+    --suz-border-subtle: rgba(255, 255, 255, 0.08);
+    --suz-border-focus: rgba(255, 255, 255, 0.9);
+    --suz-border-glass: rgba(255, 255, 255, 0.15);
 
-    /* --- Smooth Geometry --- */
-    --largeRadius: 1em;
-    --largerRadius: 1.25em;
-    --smallRadius: 0.5em;
-    --cardHoverBorderColor: rgba(255, 255, 255, 0.85);
+    /* --- Radii --- */
+    --suz-radius-card: 14px;
+    --suz-radius-pill: 9999px;
+    --suz-radius-sheet: 20px;
+    --suz-radius-btn: 10px;
 
-    /* --- Subtle Backdrop & Contrast --- */
-    --darkerGradientPoint: #0c1017;
-    --lighterGradientPoint: #161e2b;
-    --headerColor: rgba(16, 23, 34, 0.85);
-    --drawerColor: rgba(16, 23, 34, 0.95);
+    /* --- Shadows --- */
+    --suz-shadow-card: 0 4px 20px rgba(0, 0, 0, 0.4);
+    --suz-shadow-focus: 0 20px 40px rgba(0, 0, 0, 0.85), 0 0 0 2.5px rgba(255, 255, 255, 0.95);
+    --suz-shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.5);
+
+    /* --- Typography --- */
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", "Segoe UI", Roboto, sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--suz-text-primary);
 }
 
 /* ==========================================================================
-   Center Glassmorphic Play Button (fixes clunky corner green icon)
+   2. Global Canvas & Background Reset
+   ========================================================================== */
+
+html, body, .backgroundContainer {
+    background-color: var(--suz-bg-canvas) !important;
+    color: var(--suz-text-primary) !important;
+}
+
+/* Subtle cinematic dark gradient over backdrops */
+.backgroundContainer.withBackdrop {
+    background: radial-gradient(circle at 50% 20%, rgba(14, 16, 26, 0.5) 0%, var(--suz-bg-canvas) 80%) !important;
+}
+
+/* Remove default scrollbar clutter */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--suz-radius-pill);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ==========================================================================
+   3. Apple Top Shelf Navigation (Header)
+   ========================================================================== */
+
+.skinHeader {
+    background: var(--suz-bg-glass) !important;
+    backdrop-filter: blur(24px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+    border-bottom: 1px solid var(--suz-border-subtle) !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4) !important;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Header buttons & title */
+.skinHeader .emby-button {
+    color: var(--suz-text-secondary) !important;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.skinHeader .emby-button:hover,
+.skinHeader .emby-button:focus {
+    color: var(--suz-text-primary) !important;
+    transform: scale(1.05);
+}
+
+/* Apple TV style pill tabs */
+.emby-tabs-slider {
+    gap: 8px;
+    padding: 6px 0;
+}
+.emby-tab-button {
+    border-radius: var(--suz-radius-pill) !important;
+    padding: 8px 18px !important;
+    font-size: 0.95em !important;
+    font-weight: 500 !important;
+    color: var(--suz-text-secondary) !important;
+    transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+}
+.emby-tab-button:hover {
+    color: var(--suz-text-primary) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+.emby-tab-button-active {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.16) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 1px solid var(--suz-border-glass) !important;
+}
+
+/* ==========================================================================
+   4. tvOS Card Engine (Parallax Pop, Focus Rings, Elevation)
+   ========================================================================== */
+
+.card {
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    overflow: visible !important;
+}
+
+.cardScalable {
+    border-radius: var(--suz-radius-card) !important;
+    overflow: hidden !important;
+    border: 1px solid var(--suz-border-subtle) !important;
+    background-color: var(--suz-bg-card) !important;
+    box-shadow: var(--suz-shadow-card) !important;
+    transition: transform 0.28s cubic-bezier(0.33, 1, 0.68, 1), 
+                box-shadow 0.28s ease, 
+                border-color 0.28s ease !important;
+}
+
+.cardImageContainer {
+    border-radius: var(--suz-radius-card) !important;
+    transition: filter 0.25s ease !important;
+}
+
+/* --- Parallax Pop on Desktop Mouse Hover AND TV Remote Focus --- */
+.card-hoverable:hover .cardScalable,
+.card:focus .cardScalable,
+.card.show-focus:focus .cardScalable {
+    transform: scale(1.06) translateY(-4px) !important;
+    box-shadow: var(--suz-shadow-focus) !important;
+    border-color: var(--suz-border-focus) !important;
+}
+
+.card-hoverable:hover .cardImageContainer,
+.card:focus .cardImageContainer {
+    filter: brightness(1.05) !important;
+}
+
+/* Card Titles & Metadata */
+.cardText {
+    padding-top: 6px !important;
+    transition: color 0.2s ease !important;
+}
+.cardText-first {
+    font-weight: 500 !important;
+    font-size: 0.95em !important;
+    color: var(--suz-text-primary) !important;
+}
+.cardText-secondary {
+    font-size: 0.85em !important;
+    color: var(--suz-text-secondary) !important;
+    margin-top: 2px !important;
+}
+
+/* Highlight title when card is focused / hovered */
+.card-hoverable:hover .cardText-first,
+.card:focus .cardText-first {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+/* ==========================================================================
+   5. Apple Centered Glass Play Button
    ========================================================================== */
 
 .cardOverlayContainer > .cardOverlayFab-primary {
@@ -49,120 +212,194 @@
     left: 50% !important;
     bottom: auto !important;
     right: auto !important;
-    transform: translate(-50%, -50%) scale(0.9) !important;
-    width: 3.5em !important;
-    height: 3.5em !important;
-    background: rgba(255, 255, 255, 0.2) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
-    border-radius: 50% !important;
+    transform: translate(-50%, -50%) scale(0.85) !important;
+    width: 3.6em !important;
+    height: 3.6em !important;
+    background: rgba(255, 255, 255, 0.24) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+    border-radius: var(--suz-radius-pill) !important;
     color: #ffffff !important;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
     opacity: 0;
-    transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease !important;
+    transition: opacity 0.22s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease !important;
     margin: 0 !important;
     z-index: 10 !important;
 }
 
-/* Play button icon sizing */
 .cardOverlayContainer > .cardOverlayFab-primary .material-icons {
     font-size: 2em !important;
     color: #ffffff !important;
 }
 
-/* Reveal play button smoothly when hovering over the card */
+/* Smooth reveal on hover / focus */
 .card-hoverable:hover .cardOverlayContainer > .cardOverlayFab-primary,
 .card:focus .cardOverlayContainer > .cardOverlayFab-primary {
     opacity: 1 !important;
     transform: translate(-50%, -50%) scale(1) !important;
 }
 
-/* Interactive hover on the play button itself */
 .cardOverlayContainer > .cardOverlayFab-primary:hover {
-    background: rgba(139, 92, 246, 0.85) !important; /* Elegant purple glow */
-    border-color: rgba(255, 255, 255, 0.9) !important;
-    transform: translate(-50%, -50%) scale(1.15) !important;
-    box-shadow: 0 10px 35px rgba(139, 92, 246, 0.6) !important;
+    background: rgba(255, 255, 255, 0.4) !important;
+    transform: translate(-50%, -50%) scale(1.12) !important;
+    border-color: #ffffff !important;
 }
 
 /* ==========================================================================
-   Header & Navigation Polishing
+   6. Minimalist Apple Progress Bars & Time Remaining
    ========================================================================== */
 
-.skinHeader {
-    background: rgba(14, 20, 30, 0.8) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
-}
-
-/* Active navigation tab indicator */
-.emby-tab-button-active {
-    color: var(--accentColor) !important;
-}
-
-/* ==========================================================================
-   Card Hover Transitions
-   ========================================================================== */
-
-.card-hoverable .cardScalable {
-    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease !important;
-}
-
-.card-hoverable:hover .cardScalable {
-    transform: translateY(-2px) scale(1.02) !important;
-}
-
-/* ==========================================================================
-   Resume & Progress Bar Enhancement
-   ========================================================================== */
-
-/* Progress bar container on cards */
+/* Progress bar pill track */
 .itemProgressBar,
 .innerCardFooter {
     height: 4px !important;
-    background: rgba(255, 255, 255, 0.15) !important;
-    border-radius: 4px !important;
+    background: rgba(255, 255, 255, 0.18) !important;
+    border-radius: var(--suz-radius-pill) !important;
     overflow: hidden !important;
+    margin: 4px 6px !important;
     backdrop-filter: blur(4px) !important;
 }
 
-/* Filled progress bar with glowing accent gradient */
+/* Glowing white/silver progress fill */
 .itemProgressBarForeground {
-    background: linear-gradient(90deg, #7c3aed, #a78bfa) !important;
-    border-radius: 4px !important;
-    box-shadow: 0 0 8px rgba(139, 92, 246, 0.6) !important;
+    background: #ffffff !important;
+    border-radius: var(--suz-radius-pill) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7) !important;
     transition: width 0.3s ease !important;
 }
 
+/* Time remaining text injected by resume-time.js */
+.suzfin-time-badge {
+    color: #ffffff !important;
+    font-weight: 500 !important;
+    font-size: 0.88em !important;
+    opacity: 0.9;
+}
+.suzfin-time-separator {
+    color: var(--suz-text-tertiary) !important;
+    margin: 0 4px;
+}
+
 /* ==========================================================================
-   Time Remaining Badges (for resume-time.js addon)
+   7. Item Details Page & Cinematic Backdrop
    ========================================================================== */
 
-.suzfin-time-badge {
-    color: #c4b5fd !important; /* Soft accent lavender */
-    font-weight: 500 !important;
-    font-size: 0.9em !important;
+.itemDetailPage {
+    background: transparent !important;
 }
 
-.suzfin-time-separator {
-    color: var(--dimTextColor) !important;
-    opacity: 0.6 !important;
+/* Cinematic fade from backdrop into content */
+.detailPagePrimaryContainer {
+    background: linear-gradient(180deg, transparent 0%, rgba(8, 8, 10, 0.85) 60%, var(--suz-bg-canvas) 100%) !important;
 }
 
-.suzfin-badge-overlay {
-    position: absolute !important;
-    top: 0.6em !important;
-    right: 0.6em !important;
-    background: rgba(15, 23, 42, 0.75) !important;
-    backdrop-filter: blur(8px) !important;
-    -webkit-backdrop-filter: blur(8px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    padding: 0.2em 0.6em !important;
-    border-radius: 6px !important;
-    font-size: 0.75em !important;
+/* Action buttons (Play, Trailer, Favorite) */
+.mainDetailButtons .emby-button {
+    border-radius: var(--suz-radius-btn) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid var(--suz-border-glass) !important;
     color: #ffffff !important;
-    z-index: 5 !important;
+    font-weight: 500 !important;
+    transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+.mainDetailButtons .emby-button:hover,
+.mainDetailButtons .emby-button:focus {
+    background: rgba(255, 255, 255, 0.25) !important;
+    transform: scale(1.04) !important;
+    border-color: #ffffff !important;
 }
 
+/* Primary Play Button */
+.mainDetailButtons .btnPlay {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-weight: 600 !important;
+    border: none !important;
+}
+.mainDetailButtons .btnPlay:hover,
+.mainDetailButtons .btnPlay:focus {
+    background: #e5e5e7 !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.35) !important;
+}
+
+/* ==========================================================================
+   8. Glass Dialogs, Drawer & Menus
+   ========================================================================== */
+
+.dialog, .paperList, .actionSheet {
+    background: var(--suz-bg-glass-heavy) !important;
+    backdrop-filter: blur(30px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
+    border: 1px solid var(--suz-border-glass) !important;
+    border-radius: var(--suz-radius-sheet) !important;
+    box-shadow: var(--suz-shadow-glass) !important;
+}
+
+.mainDrawer {
+    background: var(--suz-bg-glass-heavy) !important;
+    backdrop-filter: blur(28px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+    border-right: 1px solid var(--suz-border-subtle) !important;
+}
+
+.navMenuOption:hover,
+.navMenuOption:focus {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--suz-radius-btn) !important;
+}
+
+/* ==========================================================================
+   9. 📺 Samsung Tizen & TV Mode Optimizations (.layout-tv)
+   ========================================================================== */
+
+.layout-tv {
+    font-size: 1.15em !important; /* Larger text for 10-foot viewing distance */
+}
+
+/* TV Focus: High-contrast Apple TV glowing focus ring for D-Pad remote navigation */
+.layout-tv button:focus,
+.layout-tv .card:focus,
+.layout-tv .emby-button:focus {
+    outline: none !important;
+}
+
+.layout-tv .card:focus .cardScalable {
+    transform: scale(1.08) translateY(-6px) !important;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.9), 0 0 0 3px #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+.layout-tv .emby-tab-button:focus {
+    background: rgba(255, 255, 255, 0.28) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 0 2px #ffffff !important;
+    transform: scale(1.06) !important;
+}
+
+.layout-tv .cardOverlayContainer > .cardOverlayFab-primary {
+    display: none !important; /* On TV, clicking remote Enter starts playback directly */
+}
+
+/* ==========================================================================
+   10. 📱 Mobile Optimizations (.layout-mobile)
+   ========================================================================== */
+
+.layout-mobile .skinHeader {
+    backdrop-filter: blur(16px) !important;
+}
+
+.layout-mobile .cardScalable {
+    border-radius: 10px !important;
+}
+
+/* Disable large hover scale on mobile touch */
+.layout-mobile .card-hoverable:hover .cardScalable {
+    transform: none !important;
+}
+
+.layout-mobile .cardOverlayContainer > .cardOverlayFab-primary {
+    display: none !important; /* Touch taps poster directly to open/play */
+}

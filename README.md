@@ -1,95 +1,46 @@
-# 💜 SuzFin
+# 🍎 SuzFin — Apple TV (tvOS) Edition
 
-A refined, modern, and aesthetic theme for **Jellyfin**, tailored with cohesive purple accents, smooth card animations, and a sleek **centered glassmorphic play button** that replaces the default clunky green corner icon.
+A clean, modern, and lightweight theme for **Jellyfin**, inspired by the design language of **Apple TV+ and tvOS**.
 
-Inspired by [ElegantFin](https://github.com/lscambo13/ElegantFin) and optimized for modern Jellyfin instances (including Jellyfin 12 and the [Fishbowl](https://github.com/Suz41/Fishbowl) Android server ecosystem).
+Built completely from scratch to deliver a unified, premium streaming experience across **Samsung Tizen TV**, **PC Desktop**, and **Mobile**.
 
 ---
 
-## ✨ Highlights
+## ✨ Features
 
-- 🎯 **Centered Glassmorphic Play Button:** Beautiful frosted-glass play icon in the center of cards on hover with smooth zoom effects (no more awkward green buttons in the bottom corner!).
-- 💜 **Harmonious Purple Accents:** Tailored palette matching the signature `suz` purple aesthetics (`#8b5cf6`).
-- ⚡ **Jellyfin 12 Modern UI Ready:** Built-in compatibility layer for Jellyfin 12 layout changes.
-- 🌫️ **Frosted Glass Header:** Semi-transparent blurred navigation header that blends into media backdrops.
-- 📱 **Cross-Platform:** Looks stunning on Desktop, Mobile, and Tablet.
+- 📺 **Native Samsung Tizen TV Support:** Fully optimized for `.layout-tv` and TV remote D-Pad navigation. Selected posters scale up smoothly (`scale(1.08)`) with a high-contrast glowing focus outline for 10-foot viewing.
+- 🖤 **Deep OLED Dark Canvas:** Pure, immersive dark surfaces (`#08080a`) with cinematic backdrop lighting.
+- 🌫️ **Frosted Glass Top Shelf:** Translucent floating navigation bar with pill-shaped tab selectors and backdrop blur.
+- 🎯 **Apple Centered Play Button:** Sleek frosted-glass center play icon on desktop hover (no clunky corner buttons).
+- ⏱️ **Minimalist Progress Indicators:** Clean glowing silver/white progress bars for Resume & Continue Watching.
+- ⚡ **Zero Bloat:** 100% standalone and lightweight (no slow or buggy external dependencies).
 
 ---
 
 ## 🚀 Quick Install
 
-### Method: Custom CSS (Recommended)
+### In Jellyfin Web / Dashboard:
 
 1. Open your Jellyfin server.
 2. Go to **Dashboard** $\rightarrow$ **General** *(or click your profile avatar $\rightarrow$ **Display**)*.
 3. Scroll down to the **Custom CSS code** field.
-4. Paste the following line:
+4. Paste the import URL:
 
 ```css
 @import url("https://cdn.jsdelivr.net/gh/Suz41/SuzFin@main/theme.css");
 ```
 
-5. Click **Save** and refresh your browser (`Ctrl + Shift + R`).
+5. Click **Save** and refresh your screen (`Ctrl + Shift + R` on PC, or restart the app on your TV/Mobile).
 
 ---
 
-## 🧩 Optional Add-ons
+## ⏱️ Optional: Show Exact Time Remaining on Resume Cards
 
-You can layer any of these add-on imports **below** the main `@import` line in your Custom CSS box:
+If you want cards in **Continue Watching** to show the exact time remaining (e.g. `2011 • 45m left`), load the included companion script via the **Jellyfin JavaScript Injector** plugin:
 
-### 1. Pure OLED Pitch Black Mode
-For deep blacks on OLED screens and mobile displays:
-```css
-@import url("https://cdn.jsdelivr.net/gh/Suz41/SuzFin@main/addons/oled-black.css");
-```
-
-### 2. Centered Purple Glow Play Button
-If you prefer a purple play button over the frosted glass look:
-```css
-@import url("https://cdn.jsdelivr.net/gh/Suz41/SuzFin@main/addons/play-button-purple.css");
-```
-
-### 3. Minimalist Mode (Hide Card Play Button)
-If you prefer completely clean posters with zero overlay buttons:
-```css
-@import url("https://cdn.jsdelivr.net/gh/Suz41/SuzFin@main/addons/hide-play-button.css");
-```
-
----
-
-## ⏱️ Show Time Remaining on Resume Cards
-
-Jellyfin's card engine by default only displays a progress bar. With **`resume-time.js`**, SuzFin automatically calculates the exact remaining time (e.g. `2011 • 45m left`) and injects it right into the card details:
-
-### How to Enable:
-Use the **Jellyfin JavaScript Injector** plugin (or add to your web client's `index.html`):
 ```html
 <script src="https://cdn.jsdelivr.net/gh/Suz41/SuzFin@main/addons/resume-time.js"></script>
 ```
-*(The CSS styling for the time badge and glowing progress bar is already bundled inside `theme.css`).*
-
-
----
-
-## 🎨 Fine-Tuning & Custom Variables
-
-You can customize variables at any time by placing a `:root` block below your import:
-
-```css
-:root {
-    /* Change accent color */
-    --accentColor: #a855f7;
-    
-    /* Adjust poster corner roundness (0 for square, 1.5em for extra round) */
-    --largeRadius: 1em;
-}
-```
-
----
-
-## 📜 Credits & Acknowledgments
-- Built upon the excellent base work by [lscambo13](https://github.com/lscambo13/ElegantFin).
-- Jellyfin 12 modern layout fixes inspired by [mihaif7](https://github.com/mihaif7/elegantfin-jf12).
 
 ---
 

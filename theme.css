@@ -222,53 +222,10 @@
 }
 
 /* ==========================================================================
-   9. 🍎 Apple TV (tvOS) Item Details Page Overhaul
+   9. 🍎 Apple TV (tvOS) Details Page Buttons & Typography
    ========================================================================== */
 
-/* Cinematic dark canvas */
-#itemDetailPage {
-    background-color: #08080a !important;
-}
-
-/* Hide redundant floating poster card on detail page (backdrop is the hero) */
-#itemDetailPage:not(.noBackdrop) .detailImageContainer,
-#itemDetailPage .detailRibbon .detailImageContainer {
-    display: none !important;
-}
-
-/* Cinematic hero text & buttons alignment */
-.detailPagePrimaryContainer {
-    padding: 2rem 4rem 4rem 4rem !important;
-    background: linear-gradient(0deg, #08080a 25%, rgba(8, 8, 10, 0.7) 65%, transparent 100%),
-                linear-gradient(90deg, #08080a 35%, transparent 85%) !important;
-}
-
-/* Big Apple TV Hero Logo */
-.detailLogo {
-    max-height: 18vh !important;
-    max-width: 40vw !important;
-    margin-bottom: 1rem !important;
-    filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.8)) !important;
-}
-
-/* Apple TV Metadata row */
-.itemMiscInfo {
-    display: flex !important;
-    align-items: center !important;
-    gap: 0.8rem !important;
-    font-size: 1.05em !important;
-    color: rgba(255, 255, 255, 0.8) !important;
-    margin-bottom: 1.4rem !important;
-}
-
 /* Apple TV Buttons: Solid White Play/Resume Pill */
-.mainDetailButtons {
-    display: flex !important;
-    align-items: center !important;
-    gap: 0.85rem !important;
-    margin-bottom: 1.5rem !important;
-}
-
 .mainDetailButtons .btnPlay,
 .mainDetailButtons .btnResume,
 .mainDetailButtons .emby-button[data-action="resume"],
@@ -277,7 +234,7 @@
     color: #000000 !important;
     font-weight: 600 !important;
     font-size: 1.05em !important;
-    padding: 0.7rem 2.2rem !important;
+    padding: 0.65rem 2rem !important;
     border-radius: 9999px !important;
     border: none !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
@@ -321,14 +278,7 @@
     box-shadow: 0 0 16px rgba(255, 255, 255, 0.5) !important;
 }
 
-/* Synopsis / Overview Typography */
-.itemOverview {
-    max-width: 55vw !important;
-    font-size: 1.1em !important;
-    line-height: 1.6 !important;
-    color: rgba(255, 255, 255, 0.85) !important;
-}
-
+/* Clean Tagline and Overview text */
 .tagline {
     font-size: 1.15em !important;
     font-weight: 600 !important;
@@ -336,14 +286,9 @@
     margin-bottom: 0.5rem !important;
 }
 
-/* Technical Media stream card (1080p HEVC SDR) moved below */
-.mediaInfoCard,
-.mediaSources {
-    margin-top: 2.5rem !important;
-    max-width: max-content !important;
-    background: rgba(255, 255, 255, 0.06) !important;
-    backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    border-radius: 12px !important;
+.itemOverview {
+    line-height: 1.6 !important;
+    color: rgba(255, 255, 255, 0.85) !important;
 }
+
 

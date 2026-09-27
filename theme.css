@@ -80,26 +80,42 @@
 }
 
 /* Apple TV Pill Navigation Tabs */
-.emby-tab-button {
+.emby-tab-button,
+.sectionTabs .emby-tab-button {
     font-weight: 500 !important;
     font-size: 0.95em !important;
     border-radius: 9999px !important;
-    padding: 0.5em 1.25em !important;
+    padding: 0.45em 1.25em !important;
     margin: 0 0.25em !important;
     transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1) !important;
-    color: rgba(255, 255, 255, 0.7) !important;
+    color: rgba(255, 255, 255, 0.65) !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
 }
 
-.emby-tab-button:hover {
+.emby-tab-button:hover,
+.sectionTabs .emby-tab-button:hover {
     color: #ffffff !important;
-    background: rgba(255, 255, 255, 0.12) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
 }
 
-.emby-tab-button-active {
-    color: #000000 !important;
-    background: #ffffff !important;
+.emby-tab-button-active,
+.sectionTabs .emby-tab-button-active {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.18) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
     font-weight: 600 !important;
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.25) !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35) !important;
+}
+
+.emby-tab-button .emby-button-foreground,
+.emby-tab-button-active .emby-button-foreground,
+.emby-tab-button-text,
+.emby-tab-button:before,
+.emby-tab-button-active:before {
+    color: inherit !important;
 }
 
 /* ==========================================================================
@@ -233,10 +249,10 @@
 }
 
 /* ==========================================================================
-   7. 🎬 Minimal Apple TV Detail Page (Clean Controls, No Clutter)
+   7. 🎬 Minimal Apple TV Detail Page (Only Resume, Delete, Fav, More)
    ========================================================================== */
 
-/* Solid White Apple Play/Resume Pill */
+/* 1. Solid White Apple Play / Resume Pill */
 .mainDetailButtons .btnPlay,
 .mainDetailButtons .btnResume,
 .mainDetailButtons .emby-button[data-action="resume"],
@@ -250,6 +266,7 @@
     border: none !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
     transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.2s ease !important;
+    margin-right: 0.5em !important;
 }
 
 .mainDetailButtons .btnPlay:hover,
@@ -264,8 +281,22 @@
     box-shadow: 0 8px 30px rgba(255, 255, 255, 0.6) !important;
 }
 
-/* Frosted glass circular secondary buttons (Trailer, Favorite, Watched, More) */
-.mainDetailButtons .emby-button:not(.btnPlay):not(.btnResume):not([data-action="resume"]):not([data-action="play"]) {
+/* 2. Secondary Circular Buttons: Delete, Favorite, Three Dots */
+.mainDetailButtons .btnDelete,
+.mainDetailButtons .btnDeleteItem,
+.mainDetailButtons [data-action="delete"],
+.mainDetailButtons [data-action="deleteitem"],
+.mainDetailButtons .btnUserRating,
+.mainDetailButtons .btnFavorite,
+.mainDetailButtons [data-action="favorite"],
+.mainDetailButtons .btnMoreCommands,
+.mainDetailButtons .btnMore,
+.mainDetailButtons [data-action="more"],
+.mainDetailButtons [data-action="menu"],
+.mainDetailButtons [data-action="commands"] {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     background: rgba(255, 255, 255, 0.12) !important;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
@@ -275,34 +306,69 @@
     width: 2.8em !important;
     height: 2.8em !important;
     padding: 0 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    margin: 0 0.35em !important;
     transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1) !important;
 }
 
-.mainDetailButtons .emby-button:not(.btnPlay):not(.btnResume):not([data-action="resume"]):not([data-action="play"]):hover,
-.mainDetailButtons .emby-button:not(.btnPlay):not(.btnResume):not([data-action="resume"]):not([data-action="play"]):focus {
+.mainDetailButtons .btnUserRating:hover,
+.mainDetailButtons .btnFavorite:hover,
+.mainDetailButtons .btnMoreCommands:hover,
+.mainDetailButtons .btnMore:hover,
+.mainDetailButtons .btnUserRating:focus,
+.mainDetailButtons .btnFavorite:focus,
+.mainDetailButtons .btnMoreCommands:focus,
+.mainDetailButtons .btnMore:focus {
     background: rgba(255, 255, 255, 0.3) !important;
     transform: scale(1.12) !important;
     border-color: #ffffff !important;
     box-shadow: 0 0 16px rgba(255, 255, 255, 0.5) !important;
 }
 
-/* Hide excessive clutter buttons */
+/* Delete button hover / focus: subtle red glow */
+.mainDetailButtons .btnDelete:hover,
+.mainDetailButtons .btnDeleteItem:hover,
+.mainDetailButtons [data-action="delete"]:hover,
+.mainDetailButtons .btnDelete:focus,
+.mainDetailButtons .btnDeleteItem:focus,
+.mainDetailButtons [data-action="delete"]:focus {
+    background: rgba(239, 68, 68, 0.25) !important;
+    border-color: #ef4444 !important;
+    color: #ff6b6b !important;
+    transform: scale(1.12) !important;
+    box-shadow: 0 0 16px rgba(239, 68, 68, 0.5) !important;
+}
+
+/* 3. HIDE ALL OTHER BUTTONS (Trailer, Replay, Download, SyncPlay, Played, Split, etc.) */
+.mainDetailButtons > .emby-button:not(.btnPlay):not(.btnResume):not([data-action="play"]):not([data-action="resume"]):not(.btnDelete):not(.btnDeleteItem):not([data-action="delete"]):not([data-action="deleteitem"]):not(.btnUserRating):not(.btnFavorite):not([data-action="favorite"]):not(.btnMoreCommands):not(.btnMore):not([data-action="more"]):not([data-action="menu"]):not([data-action="commands"]),
+.mainDetailButtons .btnPlayTrailer,
+.mainDetailButtons .btnTrailer,
+.mainDetailButtons .btnReplay,
+.mainDetailButtons .btnRestart,
 .mainDetailButtons .btnDownload,
-.mainDetailButtons .btnDelete,
-.mainDetailButtons .btnDeleteItem,
-.mainDetailButtons .btnSplitVersions,
-.mainDetailButtons .btnShuffle,
 .mainDetailButtons .btnSyncPlay,
+.mainDetailButtons .btnSync,
+.mainDetailButtons .syncPlayButton,
+.mainDetailButtons .btnSyncPlayGroup,
+.mainDetailButtons .btnSplitVersions,
 .mainDetailButtons .btnPlayExternal,
+.mainDetailButtons .btnPlayed,
+.mainDetailButtons .btnTogglePlayed,
+.mainDetailButtons .btnPlayState,
+.mainDetailButtons .playstatebutton,
+.mainDetailButtons .btnInstantMix,
+.mainDetailButtons .btnShuffle,
+.mainDetailButtons [data-action="trailer"],
+.mainDetailButtons [data-action="restart"],
+.mainDetailButtons [data-action="replay"],
 .mainDetailButtons [data-action="download"],
-.mainDetailButtons [data-action="delete"],
 .mainDetailButtons [data-action="syncplay"],
-.mainDetailButtons [data-action="shuffle"],
+.mainDetailButtons [data-action="sync"],
 .mainDetailButtons [data-action="splitversions"],
-.mainDetailButtons [data-action="externalplayer"] {
+.mainDetailButtons [data-action="externalplayer"],
+.mainDetailButtons [data-action="played"],
+.mainDetailButtons [data-action="toggleplayed"],
+.mainDetailButtons [data-action="instantmix"],
+.mainDetailButtons [data-action="shuffle"] {
     display: none !important;
 }
 

@@ -1,20 +1,20 @@
 /**
  * ════════════════════════════════════════════════════════════════════════════
- * 📺 SuzFin — Premium OTT Streaming Experience
+ * 💻📱 SuzFin — Premium OTT Streaming Experience (PC & Mobile Edition)
  * ════════════════════════════════════════════════════════════════════════════
  * Author: Suz41 (https://github.com/Suz41)
  * License: MIT
  * Repository: https://github.com/Suz41/SuzFin
  *
- * Exact 1:1 Design Implementation + Smart Tweaks (OTT / Smart TV & Modern Web):
+ * Dedicated PC Desktop & Mobile Experience:
  *   - 🖤 Pitch Black Surface (#0a0b0e / #000000)
  *   - 🔘 Active Solid White Pill with Bold Black Text & Icon
  *   - 🏷️ Translucent Frosted Glass Inactive Navigation Capsules with Icons
  *   - ⭕ Circular Glass Action Buttons (Search, Settings, Cast, SyncPlay, Profile)
- *   - 🚀 18px Squircle Poster Cards with Specular White Hover/Focus Glow
+ *   - 🚀 18px Squircle Poster Cards with Specular White Hover Glow (PC)
+ *   - 📱 Touch-Optimized Responsive Mobile Strip (No line wrap, smooth touch)
  *   - ⏱️ Floating Slim Progress Bar with Ambient Glow
  *   - 🎬 Cinematic Left-Aligned Hero Detail Page with Frosted Badges
- *   - 📱 Full Cross-Platform Parity: PC Desktop, Touch Mobile, & 10-Foot TV
  *   - ⚡ Universal Compatibility: Jellyfin 12+ (MUI/React) & Jellyfin 10.x
  * ════════════════════════════════════════════════════════════════════════════
  */
@@ -705,64 +705,92 @@ h1, h2, h3 {
 }
 
 /* ==========================================================================
-   12. 📺 Samsung Tizen & Android TV 10-Foot Navigation (.layout-tv)
+   12. 💻 PC Desktop Enhancements (.layout-desktop)
    ========================================================================== */
 
-.layout-tv {
-    font-size: 1.12em !important;
-}
+@media (min-width: 769px) {
+    .headerTop,
+    .MuiToolbar-root {
+        padding: 0.85rem 3rem !important;
+    }
 
-.layout-tv button:focus,
-.layout-tv .card:focus,
-.layout-tv .emby-button:focus,
-.layout-tv .MuiButtonBase-root:focus {
-    outline: none !important;
-}
+    .sectionTitle,
+    .sectionTitleTextButton > .sectionTitle,
+    h1, h2, h3 {
+        padding-left: 0.2rem !important;
+    }
 
-/* D-Pad Remote Focus on TV Cards */
-.layout-tv .card:focus .cardScalable,
-.layout-tv .card.show-focus:focus .cardScalable {
-    transform: scale(1.08) translateY(-6px) !important;
-    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.95), 0 0 0 3.5px #ffffff !important;
-    border-color: #ffffff !important;
-    z-index: 25 !important;
-}
-
-/* Focused Tab Capsule on TV Remote */
-.layout-tv .emby-tab-button:focus,
-.layout-tv .MuiToolbar-root .MuiStack-root .MuiButtonBase-root:focus {
-    background: var(--suz-white) !important;
-    color: var(--suz-black) !important;
-    box-shadow: 0 0 0 3px #ffffff !important;
-    transform: scale(1.06) !important;
-}
-
-.layout-tv .emby-tab-button:focus *,
-.layout-tv .MuiToolbar-root .MuiStack-root .MuiButtonBase-root:focus * {
-    color: var(--suz-black) !important;
-    fill: var(--suz-black) !important;
-}
-
-.layout-tv .cardOverlayContainer > .cardOverlayFab-primary {
-    display: none !important;
+    .cardScalable {
+        border-radius: var(--suz-radius-card) !important;
+    }
 }
 
 /* ==========================================================================
-   13. 📱 Mobile Optimizations (.layout-mobile)
+   13. 📱 Mobile Touch Optimizations (.layout-mobile & Small Screens)
    ========================================================================== */
 
-.layout-mobile .MuiToolbar-root {
-    padding: 0.5rem 1rem !important;
-}
+@media (max-width: 768px), (hover: none) {
+    /* Safe-area insets & compact header */
+    .headerTop,
+    .MuiToolbar-root {
+        padding: 0.5rem 1rem !important;
+        gap: 0.5rem !important;
+        min-height: 3.5rem !important;
+    }
 
-.layout-mobile .card-hoverable:hover .cardScalable {
-    transform: none !important;
-}
+    /* Swipeable pill bar with zero line-wrapping */
+    .sectionTabs,
+    .headerTabs,
+    .emby-tabs,
+    .MuiToolbar-root .MuiStack-root {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        gap: 0.45rem !important;
+    }
 
-.layout-mobile .cardOverlayContainer > .cardOverlayFab-primary {
-    display: none !important;
-}
+    .emby-tab-button,
+    .sectionTabs .emby-tab-button,
+    .MuiToolbar-root .MuiStack-root .MuiButtonBase-root:not(:first-child),
+    .MuiToolbar-root .MuiStack-root .MuiButton-root:not(:first-child) {
+        padding: 0.42em 1.05em !important;
+        font-size: 0.88em !important;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+    }
 
-.layout-mobile .cardScalable {
-    border-radius: 14px !important;
+    .emby-tab-button.emby-tab-button-active,
+    .sectionTabs .emby-tab-button.emby-tab-button-active,
+    .MuiToolbar-root .MuiStack-root .MuiButtonBase-root.active {
+        padding: 0.42em 1.25em !important;
+    }
+
+    /* Disable hover lift jitter on touch */
+    .card-hoverable:hover .cardScalable {
+        transform: none !important;
+    }
+
+    /* Touch-friendly card squircle */
+    .cardScalable {
+        border-radius: 14px !important;
+    }
+
+    /* Hide desktop overlay play button on touch */
+    .cardOverlayContainer > .cardOverlayFab-primary {
+        display: none !important;
+    }
+
+    /* Detail page hero on mobile */
+    .detailPagePrimaryContent h1,
+    .itemName {
+        font-size: 1.85em !important;
+    }
+
+    .mainDetailButtons .btnPlay,
+    .mainDetailButtons .btnResume {
+        padding: 0.6rem 1.6rem !important;
+        font-size: 0.95em !important;
+    }
 }

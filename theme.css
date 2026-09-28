@@ -48,7 +48,7 @@
     --suz-focus-ring: rgba(255, 255, 255, 0.95);
 
     /* Smooth Geometry */
-    --suz-radius-card: 16px;
+    --suz-radius-card: 18px;
     --suz-radius-pill: 9999px;
     --suz-radius-icon: 50%;
     --suz-radius-logo: 12px;

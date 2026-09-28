@@ -1,0 +1,189 @@
+/**
+ * ════════════════════════════════════════════════════════════════════════════
+ * 🍎 SuzFin — Modern Streaming Navigation Bar
+ * ════════════════════════════════════════════════════════════════════════════
+ * Author: Suz41 (https://github.com/Suz41)
+ * License: MIT
+ * Repository: https://github.com/Suz41/SuzFin
+ *
+ * Header Navigation Bar Specification:
+ *   - Solid white pill active tab with bold black text
+ *   - Clean transparent inactive tabs with high-contrast white text
+ *   - Sleek minimalist search icon aligned with tabs
+ *   - Deep cinematic gradient header fading over hero backdrops
+ *   - Zero tab underline/sliders
+ * ════════════════════════════════════════════════════════════════════════════
+ */
+
+/* ==========================================================================
+   1. Typography & Global Colors
+   ========================================================================== */
+
+:root {
+    --suz-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --suz-bg-base: #000000;
+    --suz-white: #ffffff;
+    --suz-black: #000000;
+    --suz-text-muted: rgba(255, 255, 255, 0.75);
+    --suz-pill-radius: 9999px;
+}
+
+html,
+body {
+    background-color: var(--suz-bg-base) !important;
+    font-family: var(--suz-font) !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* ==========================================================================
+   2. Header Container & Cinematic Gradient
+   ========================================================================== */
+
+/* Cinematic dark gradient fading down over hero media backdrop */
+.skinHeader {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.5) 60%, transparent 100%) !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    transition: background 0.3s ease !important;
+}
+
+/* Frosted acrylic when page is scrolled down */
+.skinHeader.skinHeader-withBackground,
+.skinHeader.semiTransparent {
+    background: rgba(10, 10, 12, 0.85) !important;
+    backdrop-filter: blur(24px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+.headerTop {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0.6rem 1.5rem !important;
+}
+
+/* ==========================================================================
+   3. Search Icon & Header Buttons
+   ========================================================================== */
+
+.headerButton {
+    color: var(--suz-white) !important;
+    background: transparent !important;
+    border: none !important;
+    transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.headerButton:hover,
+.headerButton:focus {
+    color: var(--suz-white) !important;
+    transform: scale(1.1) !important;
+    opacity: 0.9 !important;
+}
+
+/* Search button styling */
+.headerSearchButton,
+.headerButton[data-action="search"],
+.headerButtonSearch {
+    color: var(--suz-white) !important;
+    margin-right: 0.5rem !important;
+}
+
+.headerSearchButton .material-icons,
+.headerSearchButton .material-symbols-rounded,
+.headerButton[data-action="search"] .material-icons,
+.headerButton[data-action="search"] .material-symbols-rounded {
+    font-size: 1.45em !important;
+    color: var(--suz-white) !important;
+}
+
+/* ==========================================================================
+   4. Navigation Tabs Container & Items
+   ========================================================================== */
+
+.sectionTabs,
+.headerTabs,
+.emby-tabs {
+    display: flex !important;
+    align-items: center !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+}
+
+/* Hide default Jellyfin bottom line / slider */
+.emby-tab-button:before,
+.emby-tab-button-active:before,
+.emby-tab-button-slider,
+.emby-tabs-slider {
+    display: none !important;
+}
+
+/* --- Inactive Tabs --- */
+.emby-tab-button,
+.sectionTabs .emby-tab-button {
+    font-family: var(--suz-font) !important;
+    font-size: 1.05em !important;
+    font-weight: 600 !important;
+    color: var(--suz-white) !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: var(--suz-pill-radius) !important;
+    padding: 0.55em 1.25em !important;
+    margin: 0 0.35em !important;
+    text-transform: none !important;
+    letter-spacing: -0.01em !important;
+    transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    box-shadow: none !important;
+    opacity: 0.88;
+}
+
+.emby-tab-button .emby-button-foreground,
+.emby-tab-button-text {
+    color: inherit !important;
+    font-weight: inherit !important;
+}
+
+/* Inactive Tab Hover */
+.emby-tab-button:hover,
+.sectionTabs .emby-tab-button:hover {
+    color: var(--suz-white) !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+    opacity: 1 !important;
+}
+
+/* --- Active Tab: Solid White Pill with Bold Black Text --- */
+.emby-tab-button.emby-tab-button-active,
+.sectionTabs .emby-tab-button.emby-tab-button-active,
+.emby-tab-button-active {
+    background: var(--suz-white) !important;
+    color: var(--suz-black) !important;
+    font-weight: 700 !important;
+    padding: 0.55em 1.6em !important;
+    border-radius: var(--suz-pill-radius) !important;
+    border: none !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+    opacity: 1 !important;
+    transform: scale(1.02) !important;
+}
+
+.emby-tab-button-active .emby-button-foreground,
+.emby-tab-button-active .emby-tab-button-text,
+.sectionTabs .emby-tab-button.emby-tab-button-active .emby-button-foreground,
+.sectionTabs .emby-tab-button.emby-tab-button-active .emby-tab-button-text {
+    color: var(--suz-black) !important;
+    font-weight: 700 !important;
+}
+
+/* Active Tab Hover State */
+.emby-tab-button-active:hover,
+.sectionTabs .emby-tab-button-active:hover {
+    background: #f0f0f2 !important;
+    color: var(--suz-black) !important;
+    transform: scale(1.03) !important;
+}

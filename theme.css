@@ -1,189 +1,518 @@
 /**
  * ════════════════════════════════════════════════════════════════════════════
- * 🍎 SuzFin — Modern Streaming Navigation Bar
+ * 📺 SuzFin — Premium OTT Streaming Experience
  * ════════════════════════════════════════════════════════════════════════════
  * Author: Suz41 (https://github.com/Suz41)
  * License: MIT
  * Repository: https://github.com/Suz41/SuzFin
  *
- * Header Navigation Bar Specification:
- *   - Solid white pill active tab with bold black text
- *   - Clean transparent inactive tabs with high-contrast white text
- *   - Sleek minimalist search icon aligned with tabs
- *   - Deep cinematic gradient header fading over hero backdrops
- *   - Zero tab underline/sliders
+ * Design Specification (OTT / Smart TV & Modern Web Streaming):
+ *   - 🖤 Pitch Black Surface (#0a0b0e / #000000)
+ *   - 🔘 Active Solid White Pill with Bold Black Text & Icon
+ *   - 🏷️ Translucent Frosted Glass Inactive Navigation Capsules with Icons
+ *   - ⭕ Circular Glass Action Buttons (Search, Settings, Cast, SyncPlay, Profile)
+ *   - 🚀 16px Squircle Poster Cards with Specular White Hover/Focus Glow
+ *   - 📱 Full Cross-Platform Parity: PC Desktop, Touch Mobile, & 10-Foot TV
+ *   - ⚡ Universal Compatibility: Jellyfin 12+ (MUI/React) & Jellyfin 10.x
  * ════════════════════════════════════════════════════════════════════════════
  */
 
 /* ==========================================================================
-   1. Typography & Global Colors
+   1. Design Tokens & Root Variables
    ========================================================================== */
 
 :root {
+    /* Modern Geometric Typography Stack */
     --suz-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    /* Pitch Deep Canvas */
     --suz-bg-base: #000000;
+    --suz-bg-surface: #0a0b0e;
+    --suz-bg-card: #121318;
+
+    /* Frosted Acrylics */
+    --suz-glass-header: rgba(10, 11, 14, 0.75);
+    --suz-glass-capsule: rgba(255, 255, 255, 0.08);
+    --suz-glass-capsule-hover: rgba(255, 255, 255, 0.16);
+    --suz-glass-border: rgba(255, 255, 255, 0.1);
+    --suz-glass-blur: blur(28px) saturate(180%);
+
+    /* High Contrast Text */
+    --suz-text-primary: #ffffff;
+    --suz-text-secondary: #a1a1aa;
+    --suz-text-muted: #71717a;
+
+    /* Accents & Monochromes */
     --suz-white: #ffffff;
     --suz-black: #000000;
-    --suz-text-muted: rgba(255, 255, 255, 0.75);
-    --suz-pill-radius: 9999px;
+    --suz-focus-ring: rgba(255, 255, 255, 0.95);
+
+    /* Smooth Geometry */
+    --suz-radius-card: 16px;
+    --suz-radius-pill: 9999px;
+    --suz-radius-icon: 50%;
+    --suz-radius-logo: 12px;
+
+    /* Ambient Shadows */
+    --suz-shadow-card: 0 10px 24px rgba(0, 0, 0, 0.65);
+    --suz-shadow-card-hover: 0 20px 42px rgba(0, 0, 0, 0.88), 0 0 0 2px rgba(255, 255, 255, 0.92);
+    --suz-shadow-pill: 0 4px 18px rgba(0, 0, 0, 0.35);
+
+    /* Stock Jellyfin Compatibility */
+    font-family: var(--suz-font) !important;
+    --accentColor: #ffffff;
+    --accentHoverColor: #e5e5e7;
+    --btnSubmitColor: #ffffff;
+    --btnSubmitBorderColor: #ffffff;
+    --checkboxCheckedBgColor: #ffffff;
+    --highlightOutlineColor: #ffffff;
+    --cardPadderBackgroundColor: #000000;
+    --backgroundGradient: #000000;
+    --textColor: #ffffff;
+    --dimTextColor: #a1a1aa;
 }
 
+/* ==========================================================================
+   2. Global Reset & Canvas
+   ========================================================================== */
+
 html,
-body {
+body,
+.backgroundContainer,
+.backdropContainer,
+#indexPage,
+.page,
+.mainAnimatedPages {
     background-color: var(--suz-bg-base) !important;
+    background-image: none !important;
+    color: var(--suz-text-primary) !important;
     font-family: var(--suz-font) !important;
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale !important;
 }
 
 /* ==========================================================================
-   2. Header Container & Cinematic Gradient
+   3. Top Navigation Bar (Header)
    ========================================================================== */
 
-/* Cinematic dark gradient fading down over hero media backdrop */
-.skinHeader {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.5) 60%, transparent 100%) !important;
-    border-bottom: none !important;
-    box-shadow: none !important;
+/* Header Container: Supports Jellyfin 12+ (MUI AppBar) & Legacy (skinHeader) */
+.skinHeader,
+header.MuiAppBar-root,
+.MuiAppBar-root,
+.MuiPaper-root.MuiAppBar-root {
+    background: var(--suz-glass-header) !important;
+    backdrop-filter: var(--suz-glass-blur) !important;
+    -webkit-backdrop-filter: var(--suz-glass-blur) !important;
+    border-bottom: 1px solid var(--suz-glass-border) !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5) !important;
     transition: background 0.3s ease !important;
 }
 
-/* Frosted acrylic when page is scrolled down */
 .skinHeader.skinHeader-withBackground,
 .skinHeader.semiTransparent {
-    background: rgba(10, 10, 12, 0.85) !important;
-    backdrop-filter: blur(24px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+    background: rgba(8, 9, 12, 0.88) !important;
 }
 
-.headerTop {
+.headerTop,
+.MuiToolbar-root {
     display: flex !important;
     align-items: center !important;
-    padding: 0.6rem 1.5rem !important;
+    justify-content: space-between !important;
+    padding: 0.75rem 2rem !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    min-height: 4rem !important;
 }
 
-/* ==========================================================================
-   3. Search Icon & Header Buttons
-   ========================================================================== */
+/* Left Brand / Logo Squircle */
+.headerLeft,
+.MuiToolbar-root .MuiStack-root:first-child {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+}
 
-.headerButton {
+.headerHomeButton,
+.MuiToolbar-root .MuiStack-root > a:first-child,
+.MuiToolbar-root .MuiStack-root > button:first-child {
+    background: var(--suz-glass-capsule) !important;
+    border: 1px solid var(--suz-glass-border) !important;
+    border-radius: var(--suz-radius-logo) !important;
+    padding: 0.45rem 0.85rem !important;
     color: var(--suz-white) !important;
-    background: transparent !important;
-    border: none !important;
-    transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.2s ease !important;
     display: inline-flex !important;
     align-items: center !important;
-    justify-content: center !important;
+    gap: 0.4rem !important;
+    font-weight: 700 !important;
+    transition: all 0.2s ease !important;
 }
 
-.headerButton:hover,
-.headerButton:focus {
-    color: var(--suz-white) !important;
-    transform: scale(1.1) !important;
-    opacity: 0.9 !important;
-}
-
-/* Search button styling */
-.headerSearchButton,
-.headerButton[data-action="search"],
-.headerButtonSearch {
-    color: var(--suz-white) !important;
-    margin-right: 0.5rem !important;
-}
-
-.headerSearchButton .material-icons,
-.headerSearchButton .material-symbols-rounded,
-.headerButton[data-action="search"] .material-icons,
-.headerButton[data-action="search"] .material-symbols-rounded {
-    font-size: 1.45em !important;
-    color: var(--suz-white) !important;
+.headerHomeButton:hover,
+.MuiToolbar-root .MuiStack-root > a:first-child:hover {
+    background: var(--suz-glass-capsule-hover) !important;
+    transform: scale(1.04) !important;
 }
 
 /* ==========================================================================
-   4. Navigation Tabs Container & Items
+   4. OTT Navigation Capsule Suite (Center Tabs)
    ========================================================================== */
 
 .sectionTabs,
 .headerTabs,
-.emby-tabs {
+.emby-tabs,
+.MuiToolbar-root .MuiStack-root {
     display: flex !important;
     align-items: center !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
-    overflow: visible !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: none !important;
+    gap: 0.6rem !important;
 }
 
-/* Hide default Jellyfin bottom line / slider */
-.emby-tab-button:before,
-.emby-tab-button-active:before,
-.emby-tab-button-slider,
-.emby-tabs-slider {
+.sectionTabs::-webkit-scrollbar,
+.MuiToolbar-root .MuiStack-root::-webkit-scrollbar {
     display: none !important;
 }
 
-/* --- Inactive Tabs --- */
+/* Hide default Jellyfin underline/slider bars */
+.emby-tab-button:before,
+.emby-tab-button-active:before,
+.emby-tab-button-slider,
+.emby-tabs-slider,
+.MuiTabs-indicator {
+    display: none !important;
+}
+
+/* --- Inactive Capsule Tabs --- */
 .emby-tab-button,
-.sectionTabs .emby-tab-button {
+.sectionTabs .emby-tab-button,
+.MuiToolbar-root .MuiStack-root .MuiButtonBase-root:not(:first-child),
+.MuiToolbar-root .MuiStack-root .MuiButton-root:not(:first-child) {
     font-family: var(--suz-font) !important;
-    font-size: 1.05em !important;
-    font-weight: 600 !important;
+    font-size: 0.96em !important;
+    font-weight: 500 !important;
     color: var(--suz-white) !important;
-    background: transparent !important;
-    border: none !important;
-    border-radius: var(--suz-pill-radius) !important;
-    padding: 0.55em 1.25em !important;
-    margin: 0 0.35em !important;
+    background: var(--suz-glass-capsule) !important;
+    border: 1px solid var(--suz-glass-border) !important;
+    border-radius: var(--suz-radius-pill) !important;
+    padding: 0.52em 1.25em !important;
+    margin: 0 !important;
     text-transform: none !important;
     letter-spacing: -0.01em !important;
-    transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1) !important;
-    box-shadow: none !important;
-    opacity: 0.88;
+    transition: all 0.22s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    opacity: 0.9 !important;
 }
 
-.emby-tab-button .emby-button-foreground,
-.emby-tab-button-text {
+/* Icons inside capsules (Heart, Clapper, Note, TV) */
+.MuiToolbar-root .MuiStack-root .MuiButton-startIcon,
+.MuiToolbar-root .MuiStack-root .MuiButton-icon,
+.MuiToolbar-root .MuiStack-root .material-icons,
+.MuiToolbar-root .MuiStack-root svg {
     color: inherit !important;
-    font-weight: inherit !important;
+    fill: currentColor !important;
+    font-size: 1.15em !important;
+    margin-right: 0.45em !important;
 }
 
-/* Inactive Tab Hover */
+/* Inactive Capsule Hover */
 .emby-tab-button:hover,
-.sectionTabs .emby-tab-button:hover {
+.sectionTabs .emby-tab-button:hover,
+.MuiToolbar-root .MuiStack-root .MuiButtonBase-root:not(:first-child):hover,
+.MuiToolbar-root .MuiStack-root .MuiButton-root:not(:first-child):hover {
+    background: var(--suz-glass-capsule-hover) !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
     color: var(--suz-white) !important;
-    background: rgba(255, 255, 255, 0.12) !important;
     opacity: 1 !important;
+    transform: translateY(-1px) !important;
 }
 
-/* --- Active Tab: Solid White Pill with Bold Black Text --- */
+/* --- Active Capsule Tab: Solid White Pill with Bold Black Text & Icons --- */
 .emby-tab-button.emby-tab-button-active,
 .sectionTabs .emby-tab-button.emby-tab-button-active,
-.emby-tab-button-active {
+.emby-tab-button-active,
+.MuiToolbar-root .MuiStack-root .MuiButtonBase-root.active,
+.MuiToolbar-root .MuiStack-root .MuiButton-root.active,
+.MuiToolbar-root .MuiStack-root .MuiButtonBase-root[aria-current="page"],
+.MuiToolbar-root .MuiStack-root .MuiButton-root[aria-current="page"],
+.MuiToolbar-root .MuiStack-root .MuiButtonBase-root.Mui-selected,
+.MuiToolbar-root .MuiStack-root .MuiButton-root.Mui-selected {
     background: var(--suz-white) !important;
     color: var(--suz-black) !important;
+    border: 1px solid var(--suz-white) !important;
+    border-radius: var(--suz-radius-pill) !important;
     font-weight: 700 !important;
-    padding: 0.55em 1.6em !important;
-    border-radius: var(--suz-pill-radius) !important;
-    border: none !important;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+    padding: 0.52em 1.55em !important;
+    box-shadow: var(--suz-shadow-pill) !important;
     opacity: 1 !important;
     transform: scale(1.02) !important;
 }
 
-.emby-tab-button-active .emby-button-foreground,
-.emby-tab-button-active .emby-tab-button-text,
-.sectionTabs .emby-tab-button.emby-tab-button-active .emby-button-foreground,
-.sectionTabs .emby-tab-button.emby-tab-button-active .emby-tab-button-text {
+/* Force pure black inside active pill */
+.emby-tab-button-active *,
+.MuiToolbar-root .MuiStack-root .MuiButtonBase-root.active *,
+.MuiToolbar-root .MuiStack-root .MuiButton-root.active *,
+.MuiToolbar-root .MuiStack-root .MuiButtonBase-root[aria-current="page"] *,
+.MuiToolbar-root .MuiStack-root .MuiButton-root[aria-current="page"] *,
+.MuiToolbar-root .MuiStack-root .MuiButtonBase-root.Mui-selected *,
+.MuiToolbar-root .MuiStack-root .MuiButton-root.Mui-selected * {
     color: var(--suz-black) !important;
+    fill: var(--suz-black) !important;
     font-weight: 700 !important;
 }
 
-/* Active Tab Hover State */
+/* Active Hover State */
 .emby-tab-button-active:hover,
-.sectionTabs .emby-tab-button-active:hover {
-    background: #f0f0f2 !important;
-    color: var(--suz-black) !important;
+.MuiToolbar-root .MuiStack-root .MuiButtonBase-root.active:hover {
+    background: #f4f4f5 !important;
     transform: scale(1.03) !important;
+}
+
+/* ==========================================================================
+   5. Circular Glass Action Suite (Search, Settings, Cast, Profile)
+   ========================================================================== */
+
+.headerRight,
+.MuiToolbar-root .MuiBox-root {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+}
+
+/* Circular Buttons: Search, Settings, Cast, SyncPlay */
+.headerButton,
+.headerRight .headerButton,
+.MuiToolbar-root .MuiIconButton-root,
+.MuiToolbar-root .MuiBox-root .MuiIconButton-root {
+    background: var(--suz-glass-capsule) !important;
+    border: 1px solid var(--suz-glass-border) !important;
+    border-radius: var(--suz-radius-icon) !important;
+    width: 2.65em !important;
+    height: 2.65em !important;
+    min-width: 2.65em !important;
+    padding: 0 !important;
+    color: var(--suz-white) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+.headerButton:hover,
+.headerButton:focus,
+.headerRight .headerButton:hover,
+.MuiToolbar-root .MuiIconButton-root:hover,
+.MuiToolbar-root .MuiBox-root .MuiIconButton-root:hover {
+    background: var(--suz-glass-capsule-hover) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    color: var(--suz-white) !important;
+    transform: scale(1.08) !important;
+}
+
+/* Circular User Profile Avatar */
+.headerUserButtonRound,
+.headerUserImage,
+.headerUserButton img,
+.MuiToolbar-root .MuiAvatar-root {
+    border-radius: var(--suz-radius-icon) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
+    transition: transform 0.2s ease, border-color 0.2s ease !important;
+}
+
+.headerUserButtonRound:hover,
+.MuiToolbar-root .MuiAvatar-root:hover {
+    border-color: var(--suz-white) !important;
+    transform: scale(1.08) !important;
+}
+
+/* ==========================================================================
+   6. Sections & Section Headers ("Recommended for you", "Continue watching")
+   ========================================================================== */
+
+.sectionTitle,
+.sectionTitleTextButton > .sectionTitle,
+h1, h2, h3 {
+    font-family: var(--suz-font) !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.015em !important;
+    color: var(--suz-white) !important;
+    font-size: 1.28em !important;
+    margin-bottom: 0.85em !important;
+}
+
+.sectionTitleTextButton {
+    color: var(--suz-white) !important;
+    transition: opacity 0.2s ease !important;
+}
+
+.sectionTitleTextButton:hover {
+    opacity: 0.8 !important;
+}
+
+/* ==========================================================================
+   7. 16px Squircle Poster Cards & Specular Hover
+   ========================================================================== */
+
+.card {
+    contain: layout paint !important;
+    transition: transform 0.28s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+.cardScalable {
+    border-radius: var(--suz-radius-card) !important;
+    overflow: hidden !important;
+    box-shadow: var(--suz-shadow-card) !important;
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    background: var(--suz-bg-card) !important;
+    position: relative !important;
+    transition: transform 0.28s cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 0.28s cubic-bezier(0.25, 1, 0.5, 1),
+                border-color 0.2s ease !important;
+}
+
+.cardImageContainer {
+    border-radius: var(--suz-radius-card) !important;
+    transition: filter 0.25s ease !important;
+}
+
+/* Hover & Focus: 3D Lift with Specular White Rim Halo */
+.card-hoverable:hover .cardScalable,
+.card:focus .cardScalable,
+.card.show-focus:focus .cardScalable {
+    transform: translateY(-5px) scale(1.04) !important;
+    box-shadow: var(--suz-shadow-card-hover) !important;
+    border-color: var(--suz-focus-ring) !important;
+}
+
+.card-hoverable:hover .cardImageContainer,
+.card:focus .cardImageContainer {
+    filter: brightness(1.04) !important;
+}
+
+/* Card Titles */
+.cardText {
+    padding-top: 6px !important;
+    transition: color 0.2s ease !important;
+}
+
+.cardText-first {
+    font-weight: 600 !important;
+    font-size: 0.94em !important;
+    color: var(--suz-text-primary) !important;
+}
+
+.cardText-secondary {
+    color: var(--suz-text-secondary) !important;
+    font-size: 0.84em !important;
+    font-weight: 400 !important;
+    margin-top: 2px !important;
+}
+
+/* ==========================================================================
+   8. Slim Floating Progress Pill (Continue Watching)
+   ========================================================================== */
+
+.innerCardFooter,
+.cardFooter {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.itemProgressBar {
+    position: absolute !important;
+    bottom: 9px !important;
+    left: 10px !important;
+    right: 10px !important;
+    width: auto !important;
+    height: 4px !important;
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-radius: var(--suz-radius-pill) !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    z-index: 5 !important;
+}
+
+.itemProgressBarForeground {
+    background: var(--suz-white) !important;
+    border-radius: var(--suz-radius-pill) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.85) !important;
+    height: 100% !important;
+    transition: width 0.3s ease !important;
+}
+
+/* ==========================================================================
+   9. 📺 Samsung Tizen & Android TV 10-Foot Navigation (.layout-tv)
+   ========================================================================== */
+
+.layout-tv {
+    font-size: 1.12em !important;
+}
+
+.layout-tv button:focus,
+.layout-tv .card:focus,
+.layout-tv .emby-button:focus,
+.layout-tv .MuiButtonBase-root:focus {
+    outline: none !important;
+}
+
+/* D-Pad Remote Focus on TV Cards */
+.layout-tv .card:focus .cardScalable,
+.layout-tv .card.show-focus:focus .cardScalable {
+    transform: scale(1.08) translateY(-6px) !important;
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.95), 0 0 0 3.5px #ffffff !important;
+    border-color: #ffffff !important;
+    z-index: 25 !important;
+}
+
+/* Focused Tab Capsule on TV Remote */
+.layout-tv .emby-tab-button:focus,
+.layout-tv .MuiToolbar-root .MuiStack-root .MuiButtonBase-root:focus {
+    background: var(--suz-white) !important;
+    color: var(--suz-black) !important;
+    box-shadow: 0 0 0 3px #ffffff !important;
+    transform: scale(1.06) !important;
+}
+
+.layout-tv .emby-tab-button:focus *,
+.layout-tv .MuiToolbar-root .MuiStack-root .MuiButtonBase-root:focus * {
+    color: var(--suz-black) !important;
+    fill: var(--suz-black) !important;
+}
+
+/* Hide hover-only buttons on TV */
+.layout-tv .cardOverlayContainer > .cardOverlayFab-primary {
+    display: none !important;
+}
+
+/* ==========================================================================
+   10. 📱 Mobile Optimizations (.layout-mobile)
+   ========================================================================== */
+
+.layout-mobile .MuiToolbar-root {
+    padding: 0.5rem 1rem !important;
+}
+
+.layout-mobile .card-hoverable:hover .cardScalable {
+    transform: none !important;
+}
+
+.layout-mobile .cardOverlayContainer > .cardOverlayFab-primary {
+    display: none !important;
+}
+
+.layout-mobile .cardScalable {
+    border-radius: 12px !important;
 }

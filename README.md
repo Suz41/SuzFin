@@ -7,7 +7,7 @@ Custom Jellyfin theme based on Abyss.
 Add the following import to your Jellyfin Custom CSS:
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/Suz41/SuzFin@v1.0.7/theme.css");
+@import url("https://cdn.jsdelivr.net/gh/Suz41/SuzFin@v1.0.8/theme.css");
 ```
 
 ## Credits

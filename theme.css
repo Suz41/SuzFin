@@ -105,7 +105,7 @@
     background-color: transparent !important;
 }
 
-/* 4. Video Player: fully transparent controls with no blur, and top PG rating badge */
+/* 4. Video Player: fully transparent controls with no blur */
 #videoOsdPage,
 .videoOsdBottom,
 .videoOsdBottom .osdControls,
@@ -123,6 +123,16 @@ body:has(#videoOsdPage) .skinHeader .MuiTypography-root {
     -webkit-backdrop-filter: none !important;
     box-shadow: none !important;
     border: none !important;
+}
+
+/* Hide plain text movie title in video player top header */
+body:has(#videoOsdPage) .skinHeader .MuiTypography-root,
+body:has(#videoOsdPage) .pageTitle,
+#videoOsdPage .pageTitle,
+.skinHeader.osdHeader .pageTitle,
+.skinHeader.osdHeader .MuiTypography-root,
+body:has(#videoOsdPage) header.MuiAppBar-root .MuiToolbar-root .MuiTypography-root {
+    display: none !important;
 }
 
 /* Position PG rating in the top bar */

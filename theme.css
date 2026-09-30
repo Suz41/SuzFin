@@ -14,7 +14,7 @@
     display: none !important;
 }
 
-/* 2. Progress bar: match Home page floating white pill across Movies & all views */
+/* 2. Progress bars: match Home page floating white pill across Movies & all views */
 .innerCardFooter,
 .innerCardFooterClear {
     background: transparent !important;
@@ -22,13 +22,24 @@
     box-shadow: none !important;
 }
 
-/* Track styling for both Legacy and Modern MUI progress bars on cards */
+/* Track styling for legacy progress bars (Home page and standard cards) */
+#indexPage .itemProgressBar,
+#moviesPage .itemProgressBar,
+.libraryPage .itemProgressBar,
 .card .itemProgressBar,
-.cardScalable .itemProgressBar,
-.cardBox .itemProgressBar,
-.innerCardFooter .itemProgressBar,
-.itemsContainer .itemProgressBar,
-.itemProgressBar,
+.itemProgressBar {
+    height: 7px !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    margin: .5em .8em !important;
+    border-radius: var(--abyss-radius, 24px) !important;
+    overflow: hidden !important;
+    display: block !important;
+}
+
+/* Track styling for modern Material-UI LinearProgress on cards */
 .itemLinearProgress,
 .card .itemLinearProgress,
 .cardScalable .itemLinearProgress {
@@ -44,17 +55,19 @@
     bottom: 0 !important;
     left: 0 !important;
     position: absolute !important;
+    display: block !important;
     --jf-palette-primary-main: rgba(var(--abyss-accent, 245, 245, 247), 0.95) !important;
     --mui-palette-primary-main: rgba(var(--abyss-accent, 245, 245, 247), 0.95) !important;
 }
 
-/* Fill bar styling (overrides MUI and Jellyfin blue #00a4dc with Abyss white accent) */
+/* Fill bar styling (floating white pill across all card types) */
+#indexPage .itemProgressBarForeground,
+#moviesPage .itemProgressBarForeground,
+.libraryPage .itemProgressBarForeground,
 .itemProgressBarForeground,
 .card .itemProgressBarForeground,
 .cardScalable .itemProgressBarForeground,
-.cardBox .itemProgressBarForeground,
 .innerCardFooter .itemProgressBarForeground,
-.itemsContainer .itemProgressBarForeground,
 .itemLinearProgress .MuiLinearProgress-bar,
 .itemLinearProgress [class*="MuiLinearProgress-bar"],
 .itemLinearProgress > span,
@@ -90,10 +103,4 @@
 #itemDetailPage .detailPagePrimaryContent {
     background: transparent !important;
     background-color: transparent !important;
-}
-
-#itemDetailPage .itemProgressBar,
-#itemDetailPage .innerCardFooter,
-#itemDetailPage .innerCardFooterClear {
-    display: none !important;
 }

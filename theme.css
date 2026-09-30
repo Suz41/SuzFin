@@ -1,1 +1,42 @@
 @import url('https://cdn.jsdelivr.net/gh/AumGupta/abyss-jellyfin@main/abyss.css');
+
+/* =========================================================
+   SUZFIN TWEAKS
+   ========================================================= */
+
+/* Progress bar styling: match Home page floating pill across Movies & all libraries */
+.innerCardFooterClear {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.innerCardFooter .itemProgressBar,
+.card .itemProgressBar,
+.cardScalable .itemProgressBar,
+.cardBox .itemProgressBar,
+#moviesPage .itemProgressBar,
+#tvPage .itemProgressBar,
+#showsPage .itemProgressBar,
+.libraryPage .itemProgressBar,
+.itemsContainer .itemProgressBar {
+    height: 7px !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    margin: .5em .8em !important;
+    border-radius: var(--abyss-radius, 24px) !important;
+    overflow: hidden !important;
+}
+
+.innerCardFooter .itemProgressBarForeground,
+.card .itemProgressBarForeground,
+.cardScalable .itemProgressBarForeground,
+.cardBox .itemProgressBarForeground,
+#moviesPage .itemProgressBarForeground,
+#tvPage .itemProgressBarForeground,
+#showsPage .itemProgressBarForeground,
+.libraryPage .itemProgressBarForeground,
+.itemsContainer .itemProgressBarForeground {
+    background-color: rgba(var(--abyss-accent, 245, 245, 247), 0.95) !important;
+    border-radius: var(--abyss-radius, 24px) !important;
+}

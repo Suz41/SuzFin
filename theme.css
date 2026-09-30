@@ -4,7 +4,17 @@
    SUZFIN TWEAKS
    ========================================================= */
 
-/* Progress bar: match Home page floating white pill across Movies & all views */
+/* 1. Hide center play button on cards (Movies, Music, Home, etc.) */
+.cardOverlayContainer .cardOverlayFab-primary,
+.cardOverlayContainer > .cardOverlayFab-primary,
+.cardOverlayContainer .cardOverlayButton-centered,
+.cardOverlayFab-primary,
+.cardOverlayButton-centered,
+.cardOverlayFab {
+    display: none !important;
+}
+
+/* 2. Progress bar: match Home page floating white pill across Movies & all views */
 .innerCardFooter,
 .innerCardFooterClear {
     background: transparent !important;
@@ -12,7 +22,7 @@
     box-shadow: none !important;
 }
 
-/* 1. Track styling for both Legacy and Modern MUI progress bars */
+/* Track styling for both Legacy and Modern MUI progress bars */
 .itemProgressBar,
 .card .itemProgressBar,
 .cardScalable .itemProgressBar,
@@ -38,7 +48,7 @@
     --mui-palette-primary-main: rgba(var(--abyss-accent, 245, 245, 247), 0.95) !important;
 }
 
-/* 2. Fill bar styling (overrides MUI and Jellyfin blue #00a4dc) */
+/* Fill bar styling (overrides MUI and Jellyfin blue #00a4dc with Abyss white accent) */
 .itemProgressBarForeground,
 .card .itemProgressBarForeground,
 .cardScalable .itemProgressBarForeground,

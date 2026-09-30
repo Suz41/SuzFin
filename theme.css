@@ -125,14 +125,19 @@ body:has(#videoOsdPage) .skinHeader .MuiTypography-root {
     border: none !important;
 }
 
-/* Hide plain text movie title in video player top header */
+/* Movie title in video player top header */
 body:has(#videoOsdPage) .skinHeader .MuiTypography-root,
 body:has(#videoOsdPage) .pageTitle,
 #videoOsdPage .pageTitle,
 .skinHeader.osdHeader .pageTitle,
-.skinHeader.osdHeader .MuiTypography-root,
-body:has(#videoOsdPage) header.MuiAppBar-root .MuiToolbar-root .MuiTypography-root {
-    display: none !important;
+.skinHeader.osdHeader .MuiTypography-root {
+    color: #ffffff !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8) !important;
+    font-weight: 500 !important;
 }
 
 /* Position PG rating in the top bar */

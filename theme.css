@@ -4,20 +4,19 @@
    SUZFIN TWEAKS
    ========================================================= */
 
-/* Progress bar styling: match Home page floating pill across Movies & all libraries */
+/* Progress bar: match Home page floating white pill across Movies & all views */
+.innerCardFooter,
 .innerCardFooterClear {
+    background: transparent !important;
     background-color: transparent !important;
     box-shadow: none !important;
 }
 
-.innerCardFooter .itemProgressBar,
+.itemProgressBar,
 .card .itemProgressBar,
 .cardScalable .itemProgressBar,
 .cardBox .itemProgressBar,
-#moviesPage .itemProgressBar,
-#tvPage .itemProgressBar,
-#showsPage .itemProgressBar,
-.libraryPage .itemProgressBar,
+.innerCardFooter .itemProgressBar,
 .itemsContainer .itemProgressBar {
     height: 7px !important;
     background: rgba(0, 0, 0, 0.4) !important;
@@ -28,15 +27,22 @@
     overflow: hidden !important;
 }
 
-.innerCardFooter .itemProgressBarForeground,
+.itemProgressBarForeground,
 .card .itemProgressBarForeground,
 .cardScalable .itemProgressBarForeground,
 .cardBox .itemProgressBarForeground,
-#moviesPage .itemProgressBarForeground,
-#tvPage .itemProgressBarForeground,
-#showsPage .itemProgressBarForeground,
-.libraryPage .itemProgressBarForeground,
+.innerCardFooter .itemProgressBarForeground,
 .itemsContainer .itemProgressBarForeground {
+    background: rgba(var(--abyss-accent, 245, 245, 247), 0.95) !important;
     background-color: rgba(var(--abyss-accent, 245, 245, 247), 0.95) !important;
     border-radius: var(--abyss-radius, 24px) !important;
+    height: 100% !important;
+}
+
+.itemLinearProgress {
+    border-radius: var(--abyss-radius, 24px) !important;
+    margin: .5em .8em !important;
+    width: calc(100% - 1.6em) !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    height: 7px !important;
 }

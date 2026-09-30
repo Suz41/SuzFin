@@ -22,13 +22,13 @@
     box-shadow: none !important;
 }
 
-/* Track styling for both Legacy and Modern MUI progress bars */
-.itemProgressBar,
+/* Track styling for both Legacy and Modern MUI progress bars on cards */
 .card .itemProgressBar,
 .cardScalable .itemProgressBar,
 .cardBox .itemProgressBar,
 .innerCardFooter .itemProgressBar,
 .itemsContainer .itemProgressBar,
+.itemProgressBar,
 .itemLinearProgress,
 .card .itemLinearProgress,
 .cardScalable .itemLinearProgress {
@@ -63,4 +63,37 @@
     background-color: rgba(var(--abyss-accent, 245, 245, 247), 0.95) !important;
     border-radius: var(--abyss-radius, 24px) !important;
     height: 100% !important;
+}
+
+/* 3. Detail page: remove black horizontal bar / backdrop ribbon behind movie info */
+#itemDetailPage .detailRibbon,
+.detailRibbon,
+.layout-desktop .detailRibbon,
+.layout-tv .detailRibbon,
+#itemDetailPage .itemBackdrop,
+.itemBackdrop,
+.layout-desktop .itemBackdrop,
+.layout-tv .itemBackdrop,
+#itemDetailPage .itemBackdrop::after,
+#itemDetailPage .itemBackdrop::before,
+.itemBackdrop::after,
+.itemBackdrop::before {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+#itemDetailPage,
+#itemDetailPage .detailPageWrapper,
+#itemDetailPage .detailPagePrimaryContainer,
+#itemDetailPage .detailPageSecondaryContainer,
+#itemDetailPage .detailPagePrimaryContent {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+#itemDetailPage .itemProgressBar,
+#itemDetailPage .innerCardFooter,
+#itemDetailPage .innerCardFooterClear {
+    display: none !important;
 }

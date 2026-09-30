@@ -1,1 +1,615 @@
+/* =========================================================
+   ABYSS
+   ========================================================= */
+
 @import url('https://cdn.jsdelivr.net/gh/AumGupta/abyss-jellyfin@main/abyss.css');
+@import url('https://cdn.jsdelivr.net/gh/AumGupta/abyss-jellyfin@main/styles/abyss-lite.css');
+
+
+/* =========================================================
+   SUZFIN TV / PC / MOBILE
+   ========================================================= */
+
+
+/* =========================================================
+   1. MOVIE CARD PLAY BUTTON
+   ========================================================= */
+
+.cardOverlayContainer > .cardOverlayFab-primary {
+    display: none !important;
+}
+
+
+/* =========================================================
+   2. CURRENT MOVIE BACKDROP
+   ========================================================= */
+
+/*
+   Jellyfin automatically supplies the backdrop of the
+   currently opened movie/series.
+
+   No movie-specific image URL is used.
+*/
+
+
+/* =========================================================
+   3. BASE BACKDROP
+   ---------------------------------------------------------
+   Desktop / general fallback
+   ========================================================= */
+
+#itemDetailPage .backdropImage {
+    opacity: 1 !important;
+
+    filter:
+        blur(10px)
+        saturate(110%)
+        contrast(105%)
+        brightness(75%) !important;
+
+    -webkit-filter:
+        blur(10px)
+        saturate(110%)
+        contrast(105%)
+        brightness(75%) !important;
+}
+
+
+/* =========================================================
+   4. BACKDROP CONTAINER
+   ========================================================= */
+
+#itemDetailPage .backdropContainer {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+
+    z-index: 0 !important;
+
+    pointer-events: none !important;
+
+    overflow: hidden !important;
+}
+
+
+/* =========================================================
+   5. REMOVE ABYSS EXTRA DARK OVERLAY
+   ========================================================= */
+
+#itemDetailPage .itemBackdrop::after {
+    background: transparent !important;
+}
+
+
+#itemDetailPage .itemBackdrop::before {
+    display: none !important;
+}
+
+
+/* =========================================================
+   6. CINEMATIC GRADIENT
+   ========================================================= */
+
+#itemDetailPage .backdropContainer::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.72) 0%,
+            rgba(0, 0, 0, 0.55) 22%,
+            rgba(0, 0, 0, 0.28) 42%,
+            rgba(0, 0, 0, 0.08) 68%,
+            rgba(0, 0, 0, 0.18) 100%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.18) 0%,
+            rgba(0, 0, 0, 0.02) 45%,
+            rgba(0, 0, 0, 0.55) 100%
+        );
+}
+
+
+/* =========================================================
+   7. DETAILS PAGE TRANSPARENCY
+   ========================================================= */
+
+#itemDetailPage {
+    position: relative !important;
+
+    z-index: 1 !important;
+
+    background: transparent !important;
+}
+
+
+#itemDetailPage .detailPageWrapper,
+#itemDetailPage .detailPagePrimaryContainer,
+#itemDetailPage .detailPageSecondaryContainer,
+#itemDetailPage .detailPagePrimaryContent {
+    background: transparent !important;
+}
+
+
+/* =========================================================
+   8. CONTENT ABOVE BACKDROP
+   ========================================================= */
+
+#itemDetailPage .detailPagePrimaryContainer,
+#itemDetailPage .detailPageSecondaryContainer,
+#itemDetailPage .detailPagePrimaryContent {
+    position: relative !important;
+
+    z-index: 2 !important;
+}
+
+
+/* =========================================================
+   9. POSTER
+   ========================================================= */
+
+#itemDetailPage .detailImageContainer {
+    position: relative !important;
+
+    z-index: 3 !important;
+}
+
+
+#itemDetailPage .detailImageContainer img {
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.55) !important;
+}
+
+
+/* =========================================================
+   10. MOVIE INFORMATION
+   ========================================================= */
+
+#itemDetailPage .itemName,
+#itemDetailPage .itemMiscInfo,
+#itemDetailPage .itemOverview,
+#itemDetailPage .itemGenres,
+#itemDetailPage .itemTags {
+    position: relative !important;
+
+    z-index: 3 !important;
+}
+
+
+/* =========================================================
+   11. BUTTONS
+   ========================================================= */
+
+#itemDetailPage .detailButton,
+#itemDetailPage button {
+    position: relative !important;
+
+    z-index: 4 !important;
+}
+
+
+/* =========================================================
+   12. AUDIO / SUBTITLE / VIDEO
+   ========================================================= */
+
+#itemDetailPage .selectContainer {
+    position: relative !important;
+
+    z-index: 4 !important;
+}
+
+
+/* =========================================================
+   13. MAIN DETAIL BUTTONS
+   ========================================================= */
+
+#itemDetailPage .mainDetailButtons {
+    position: relative !important;
+
+    z-index: 4 !important;
+}
+
+
+/* =========================================================
+   14. CAST / CREW / DETAILS
+   ========================================================= */
+
+#itemDetailPage .detailPageContent {
+    position: relative !important;
+
+    z-index: 2 !important;
+
+    background: transparent !important;
+}
+
+
+/* =========================================================
+   15. DETAILS RIBBON
+   ========================================================= */
+
+#itemDetailPage .detailRibbon {
+    background: transparent !important;
+}
+
+
+/* =========================================================
+   16. EXTRA ITEM BACKDROP
+   ========================================================= */
+
+#itemDetailPage .itemBackdrop {
+    background: transparent !important;
+
+    box-shadow: none !important;
+}
+
+
+/* =========================================================
+   =========================================================
+   DESKTOP / PC
+   =========================================================
+   ========================================================= */
+
+@media (min-width: 75em) {
+
+    #itemDetailPage .backdropImage {
+        filter:
+            blur(10px)
+            saturate(110%)
+            contrast(105%)
+            brightness(75%) !important;
+
+        -webkit-filter:
+            blur(10px)
+            saturate(110%)
+            contrast(105%)
+            brightness(75%) !important;
+    }
+
+}
+
+
+/* =========================================================
+   =========================================================
+   LAPTOP / SMALL DESKTOP
+   =========================================================
+   ========================================================= */
+
+@media (min-width: 50em) and (max-width: 74.99em) {
+
+    #itemDetailPage .backdropImage {
+        filter:
+            blur(9px)
+            saturate(108%)
+            contrast(103%)
+            brightness(75%) !important;
+
+        -webkit-filter:
+            blur(9px)
+            saturate(108%)
+            contrast(103%)
+            brightness(75%) !important;
+    }
+
+
+    #itemDetailPage .backdropContainer::after {
+        background:
+            linear-gradient(
+                90deg,
+                rgba(0, 0, 0, 0.68) 0%,
+                rgba(0, 0, 0, 0.48) 25%,
+                rgba(0, 0, 0, 0.20) 55%,
+                rgba(0, 0, 0, 0.12) 100%
+            ),
+            linear-gradient(
+                180deg,
+                rgba(0, 0, 0, 0.16),
+                rgba(0, 0, 0, 0.48)
+            );
+    }
+
+}
+
+
+/* =========================================================
+   =========================================================
+   SAMSUNG TIZEN TV
+   32-INCH / 10-FOOT UI
+   =========================================================
+   ========================================================= */
+
+.layout-tv #itemDetailPage .backdropImage {
+
+    /*
+       Slightly less blur for Tizen performance.
+    */
+
+    filter:
+        blur(7px)
+        saturate(108%)
+        contrast(103%)
+        brightness(75%) !important;
+
+    -webkit-filter:
+        blur(7px)
+        saturate(108%)
+        contrast(103%)
+        brightness(75%) !important;
+
+    opacity: 1 !important;
+}
+
+
+/* TV backdrop */
+
+.layout-tv #itemDetailPage .backdropContainer {
+
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+
+    overflow: hidden !important;
+
+    pointer-events: none !important;
+
+    z-index: 0 !important;
+}
+
+
+/* TV gradient */
+
+.layout-tv #itemDetailPage .backdropContainer::after {
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.74) 0%,
+            rgba(0, 0, 0, 0.56) 24%,
+            rgba(0, 0, 0, 0.30) 48%,
+            rgba(0, 0, 0, 0.08) 72%,
+            rgba(0, 0, 0, 0.18) 100%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.20) 0%,
+            rgba(0, 0, 0, 0.02) 48%,
+            rgba(0, 0, 0, 0.62) 100%
+        );
+}
+
+
+/* TV content */
+
+.layout-tv #itemDetailPage .detailPagePrimaryContainer,
+.layout-tv #itemDetailPage .detailPageSecondaryContainer,
+.layout-tv #itemDetailPage .detailPagePrimaryContent {
+
+    position: relative !important;
+
+    z-index: 2 !important;
+}
+
+
+/* TV poster */
+
+.layout-tv #itemDetailPage .detailImageContainer img {
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.60) !important;
+}
+
+
+/* =========================================================
+   TV — REDUCE HEAVY EFFECTS
+   ========================================================= */
+
+/*
+   Keep the Tizen TV version lighter than PC.
+*/
+
+.layout-tv #itemDetailPage .backdropContainer {
+    backdrop-filter: none !important;
+
+    -webkit-backdrop-filter: none !important;
+}
+
+
+/* =========================================================
+   =========================================================
+   MOBILE
+   =========================================================
+   ========================================================= */
+
+.layout-mobile #itemDetailPage .backdropContainer {
+
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: 70vh !important;
+
+    overflow: hidden !important;
+
+    pointer-events: none !important;
+
+    z-index: 0 !important;
+}
+
+
+/* Mobile backdrop */
+
+.layout-mobile #itemDetailPage .backdropImage {
+
+    filter:
+        blur(6px)
+        saturate(105%)
+        contrast(102%)
+        brightness(75%) !important;
+
+    -webkit-filter:
+        blur(6px)
+        saturate(105%)
+        contrast(102%)
+        brightness(75%) !important;
+
+    opacity: 1 !important;
+}
+
+
+/* Mobile gradient */
+
+.layout-mobile #itemDetailPage .backdropContainer::after {
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.12) 0%,
+            rgba(0, 0, 0, 0.18) 35%,
+            rgba(0, 0, 0, 0.68) 75%,
+            rgba(0, 0, 0, 0.96) 100%
+        );
+}
+
+
+/* Mobile content */
+
+.layout-mobile #itemDetailPage .detailPagePrimaryContainer,
+.layout-mobile #itemDetailPage .detailPageSecondaryContainer,
+.layout-mobile #itemDetailPage .detailPagePrimaryContent {
+
+    position: relative !important;
+
+    z-index: 2 !important;
+}
+
+
+/* Mobile poster shadow */
+
+.layout-mobile #itemDetailPage .detailImageContainer img {
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.50) !important;
+}
+
+
+/* =========================================================
+   MOBILE — REMOVE EXCESSIVE GLASS / BLUR
+   ========================================================= */
+
+.layout-mobile #itemDetailPage .backdropContainer {
+
+    backdrop-filter: none !important;
+
+    -webkit-backdrop-filter: none !important;
+}
+
+
+/* =========================================================
+   =========================================================
+   SMALL MOBILE
+   =========================================================
+   ========================================================= */
+
+@media (max-width: 30em) {
+
+    .layout-mobile #itemDetailPage .backdropContainer {
+
+        height: 60vh !important;
+    }
+
+
+    .layout-mobile #itemDetailPage .backdropImage {
+
+        filter:
+            blur(5px)
+            saturate(105%)
+            brightness(75%) !important;
+
+        -webkit-filter:
+            blur(5px)
+            saturate(105%)
+            brightness(75%) !important;
+    }
+
+}
+
+
+/* =========================================================
+   =========================================================
+   LANDSCAPE MOBILE
+   =========================================================
+   ========================================================= */
+
+@media (orientation: landscape) and (max-width: 50em) {
+
+    .layout-mobile #itemDetailPage .backdropContainer {
+
+        height: 100vh !important;
+    }
+
+
+    .layout-mobile #itemDetailPage .backdropContainer::after {
+
+        background:
+            linear-gradient(
+                90deg,
+                rgba(0, 0, 0, 0.70) 0%,
+                rgba(0, 0, 0, 0.42) 35%,
+                rgba(0, 0, 0, 0.12) 75%,
+                rgba(0, 0, 0, 0.18) 100%
+            );
+    }
+
+}
+
+
+/* =========================================================
+   =========================================================
+   PERFORMANCE SAFETY
+   =========================================================
+   ========================================================= */
+
+/*
+   Never animate the large backdrop.
+   This is especially important for the 32-inch Tizen TV.
+*/
+
+#itemDetailPage .backdropImage {
+
+    transition: none !important;
+
+    animation: none !important;
+}
+
+
+/*
+   Prevent the backdrop from receiving input.
+*/
+
+#itemDetailPage .backdropImage,
+#itemDetailPage .backdropContainer,
+#itemDetailPage .itemBackdrop {
+
+    pointer-events: none !important;
+}
+
+
+/* =========================================================
+   SUZFIN END
+   ========================================================= */
